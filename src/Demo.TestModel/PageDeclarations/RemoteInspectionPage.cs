@@ -15,7 +15,7 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class ProcessesPage : MyPageBase
+    public class RemoteInspectionPage : MyPageBase
     {
         #region WebElements
 
@@ -24,14 +24,19 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @".panel")]
         protected IWebElement blockFilters { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @".search")]
         protected IWebElement blockSearch { get; set; }
 
         #endregion
 
-        [FindsBy(How = How.CssSelector, Using = @"#processStopBusyButton")]
-        protected IWebElement btnStop { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionScheduleBusyButton")]
+        protected IWebElement btnSchedule { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionInitiateBusyButton")]
+        protected IWebElement btnInitiateInspection { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".unitRemoteInspectionFilter")]
+        protected IWebElement blockRemoteInspectionFilter { get; set; }
 
         #endregion
 
@@ -41,8 +46,10 @@ namespace Demo.TestModel.PageDeclarations
             var LoginPage = new LoginPage();
             var tycoPage = LoginPage.Login();
             tycoPage.WaitLoadPage();
-            var ProcessesPage = tycoPage.Processes();
-            ProcessesPage.WaitLoadPage();
+            var PanelsPage = tycoPage.Panels();
+            PanelsPage.WaitLoadPage();
+            var RemoteInspection = PanelsPage.RemoteInspection();
+            RemoteInspection.WaitLoadPage();
         }
 
         public override bool IsDisplayed()
@@ -76,7 +83,9 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("btnStop", btnStop);
+            VerifyElementVisible("btnSchedule", btnSchedule);
+            VerifyElementVisible("btnInitiateInspection", btnInitiateInspection);
+            VerifyElementVisible("blockRemoteInspectionFilter", blockRemoteInspectionFilter);
         }
 
         public void WaitLoadPage()

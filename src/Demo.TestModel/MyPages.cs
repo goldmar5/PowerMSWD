@@ -51,11 +51,14 @@ namespace Demo.TestModel
         public static LogoutMenuPage LogoutMenuPage { get { return GetPage<LogoutMenuPage>(); } }
         public static TycoPowerManagePage TycoPowerManagePage { get { return GetPage<TycoPowerManagePage>(); } }
         public static LoginPage LoginPage { get { return GetPage<LoginPage>(); } }
-        public static UnitListPage UnitListPage { get { return GetPage<UnitListPage>(); } }
+        public static PanelsPage PanelsPage { get { return GetPage<PanelsPage>(); } }
         public static GroupPage GroupPage { get { return GetPage<GroupPage>(); } }
         public static EventsPage EventsPage { get { return GetPage<EventsPage>(); } }
         public static ProcessesPage ProcessesPage { get { return GetPage<ProcessesPage>(); } }
         public static SystemPage SystemPage { get { return GetPage<SystemPage>(); } }
         public static UserSettingsPage UserSettingsPage { get { return GetPage<UserSettingsPage>(); } }
+        public static FaultsMonitoringPage FaultsMonitoringPage { get { return GetPage<FaultsMonitoringPage>(); } }
+        public static SuspendedFaultsPage SuspendedFaultsPage { get { return GetPage<SuspendedFaultsPage>(); } }
+        public static RemoteInspectionPage RemoteInspectionPage { get { return GetPage<RemoteInspectionPage>(); } }
     }
 }

@@ -56,9 +56,9 @@ namespace Demo.TestProject.Smoke
         }
 
         [TestMethod]
-        public void UnitListPage_VerifyExpectedElements()
+        public void PanelsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.UnitListPage);
+            PageTest(MyPages.PanelsPage);
         }
 
         [TestMethod]
@@ -89,6 +89,24 @@ namespace Demo.TestProject.Smoke
         public void UserSettingsPage_VerifyExpectedElements()
         {
             PageTest(MyPages.UserSettingsPage);
+        }
+
+        [TestMethod]
+        public void FaultsMonitoringPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.FaultsMonitoringPage);
+        }
+
+        [TestMethod]
+        public void SuspendedFaultsPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.SuspendedFaultsPage);
+        }
+
+        [TestMethod]
+        public void RemoteInspectionPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.RemoteInspectionPage);
         }
     }
 }

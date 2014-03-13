@@ -15,7 +15,7 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class ProcessesPage : MyPageBase
+    public class SuspendedFaultsPage : MyPageBase
     {
         #region WebElements
 
@@ -24,14 +24,16 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @".panel")]
         protected IWebElement blockFilters { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @".search")]
         protected IWebElement blockSearch { get; set; }
 
         #endregion
 
-        [FindsBy(How = How.CssSelector, Using = @"#processStopBusyButton")]
-        protected IWebElement btnStop { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitReassignBusyButton")]
+        protected IWebElement btnReassign { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#unitResumeFaultsBusyButton")]
+        protected IWebElement btnResumeFaults { get; set; }
 
         #endregion
 
@@ -41,8 +43,10 @@ namespace Demo.TestModel.PageDeclarations
             var LoginPage = new LoginPage();
             var tycoPage = LoginPage.Login();
             tycoPage.WaitLoadPage();
-            var ProcessesPage = tycoPage.Processes();
-            ProcessesPage.WaitLoadPage();
+            var PanelsPage = tycoPage.Panels();
+            PanelsPage.WaitLoadPage();
+            var SuspendedFaults = PanelsPage.SuspendedFaults();
+            SuspendedFaults.WaitLoadPage();
         }
 
         public override bool IsDisplayed()
@@ -76,7 +80,8 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("btnStop", btnStop);
+            VerifyElementVisible("btnReassign", btnReassign);
+            VerifyElementVisible("btnResumeFaults", btnResumeFaults);
         }
 
         public void WaitLoadPage()

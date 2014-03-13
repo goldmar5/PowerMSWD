@@ -15,7 +15,7 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class UnitListPage : MyPageBase
+    public class FaultsMonitoringPage : MyPageBase
     {
         #region WebElements
 
@@ -29,32 +29,14 @@ namespace Demo.TestModel.PageDeclarations
 
         #endregion
 
-        [FindsBy(How = How.CssSelector, Using = @".panelsSubmenu a:nth-child(1)")]
-        protected IWebElement btnAllPanels { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitReassignBusyButton")]
+        protected IWebElement btnReassign { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = @"#unitSuspendFaultsBusyButton")]
+        protected IWebElement btnSuspendFaults { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".panelsSubmenu a:nth-child(2)")]
-        protected IWebElement btnFaultsMonitoring { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @".panelsSubmenu a:nth-child(3)")]
-        protected IWebElement btnSuspendedFaults { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @".panelsSubmenu a:nth-child(4)")]
-        protected IWebElement btnRemoteInspection { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @".add")]
-        protected IWebElement btnAddUnit { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"[id$=RemoveBusyButton]")]
-        protected IWebElement btnRemoveUnit { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"div.section + span")]
-        protected IWebElement ddbActions { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitResolveFaultsBusyButton")]
+        protected IWebElement btnResolveFaults { get; set; }
 
         #endregion
 
@@ -66,6 +48,8 @@ namespace Demo.TestModel.PageDeclarations
             tycoPage.WaitLoadPage();
             var PanelsPage = tycoPage.Panels();
             PanelsPage.WaitLoadPage();
+            var FaultsMonitoring = PanelsPage.FaultsMonitoring();
+            FaultsMonitoring.WaitLoadPage();
         }
 
         public override bool IsDisplayed()
@@ -89,18 +73,19 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("linkLogout", linkLogout);
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
-            #region Search and Filters, Caption locators
+
+            #region Search and Filters
             VerifyElementVisible("blockFilters", blockFilters);
             VerifyElementVisible("blockSearch", blockSearch);
+            #endregion
+
+            #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
-            VerifyElementVisible("btnAllPanels", btnAllPanels);
-            VerifyElementVisible("btnFaultsMonitoring", btnFaultsMonitoring);
-            VerifyElementVisible("btnSuspendedFaults", btnSuspendedFaults);
-            VerifyElementVisible("btnRemoteInspection", btnRemoteInspection);
-            VerifyElementVisible("btnAddUnit", btnAddUnit);
-            VerifyElementVisible("btnRemoveUnit", btnRemoveUnit);
-            VerifyElementVisible("ddbActions", ddbActions);            
+
+            VerifyElementVisible("btnReassign", btnReassign);
+            VerifyElementVisible("btnSuspendFaults", btnSuspendFaults);
+            VerifyElementVisible("btnResolveFaults", btnResolveFaults);
         }
 
         public void WaitLoadPage()
@@ -110,3 +95,4 @@ namespace Demo.TestModel.PageDeclarations
         }
     }
 }
+

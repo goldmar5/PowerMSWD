@@ -90,10 +90,10 @@ namespace Demo.TestModel
             // Does nothing at the moment
         }
 
-        public UnitListPage Panels()
+        public PanelsPage Panels()
         {
             tabPanels.Click();
-            return new UnitListPage();
+            return new PanelsPage();
         }
 
         public GroupPage Groups()

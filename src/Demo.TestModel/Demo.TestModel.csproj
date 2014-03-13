@@ -55,13 +55,16 @@
     <Compile Include="PageDeclarations\EmptyPage.cs" />
     <Compile Include="PageDeclarations\DummyExamplePage.cs" />
     <Compile Include="PageDeclarations\EventsPage.cs" />
+    <Compile Include="PageDeclarations\FaultsMonitoringPage.cs" />
     <Compile Include="PageDeclarations\GroupPage.cs" />
     <Compile Include="PageDeclarations\LoginPage.cs" />
     <Compile Include="PageDeclarations\LogoutMenuPage.cs" />
     <Compile Include="PageDeclarations\ProcessesPage.cs" />
+    <Compile Include="PageDeclarations\RemoteInspectionPage.cs" />
+    <Compile Include="PageDeclarations\SuspendedFaultsPage.cs" />
     <Compile Include="PageDeclarations\SystemPage.cs" />
     <Compile Include="PageDeclarations\TycoPowerManagePage.cs" />
-    <Compile Include="PageDeclarations\UnitListPage.cs" />
+    <Compile Include="PageDeclarations\PanelsPage.cs" />
     <Compile Include="PageDeclarations\UserSettingsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

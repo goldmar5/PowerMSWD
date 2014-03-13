@@ -24,7 +24,6 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @".panel")]
         protected IWebElement blockFilters { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @".search")]
         protected IWebElement blockSearch { get; set; }
 

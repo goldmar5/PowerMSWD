@@ -30,6 +30,12 @@ namespace Demo.TestModel.PageDeclarations
 
         #endregion
 
+        [FindsBy(How = How.CssSelector, Using = @".add")]
+        protected IWebElement btnAddGroup { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#unitRemoveBusyButton")]
+        protected IWebElement btnRemoveGroup { get; set; }
+
         #endregion
 
         #region Invoke() and IsDisplayed()
@@ -72,6 +78,9 @@ namespace Demo.TestModel.PageDeclarations
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("btnAddGroup", btnAddGroup);
+            VerifyElementVisible("btnRemoveGroup", btnRemoveGroup);
         }
 
         public void WaitLoadPage()
