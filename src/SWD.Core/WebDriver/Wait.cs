@@ -63,5 +63,13 @@ namespace Swd.Core.WebDriver
         {
             return UntilVisible(by, driver, TimeSpan.FromMilliseconds(timeOutMilliseconds));
         }
+
+        public static void UntilDisapear(IWebElement element, int timeOutMilliseconds)
+        {
+            while (true)
+            {
+                if (!element.Displayed) break;
+            }
+        }
     }
 }

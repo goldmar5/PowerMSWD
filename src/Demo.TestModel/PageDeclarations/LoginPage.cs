@@ -16,7 +16,7 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class ipmpLoginPage : MyPageBase
+    public class LoginPage : MyPageBase
     {
         #region WebElements
 
@@ -58,7 +58,7 @@ namespace Demo.TestModel.PageDeclarations
 
         public TycoPowerManagePage Login()
         {
-            MyPages.ipmpLoginPage.Invoke();
+            MyPages.LoginPage.Invoke();
             txtLogin.SendKeys("admin@visonic.com");
             txtPassword.SendKeys("Admin123");
             buttonLogIn.Click();

@@ -19,65 +19,13 @@ namespace Demo.TestModel.PageDeclarations
     {
         #region WebElements
 
-        #region General Header WebElements
-        [FindsBy(How = How.CssSelector, Using = @"#menuItem_units_all a")]
-        protected IWebElement tabPanels { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"#menuItem_group a")]
-        protected IWebElement tabGroups { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"#menuItem_event a")]
-        protected IWebElement tabEvents { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"#menuItem_process a")]
-        protected IWebElement tabProcesses { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"#menuItem_system a")]
-        protected IWebElement tabSystem { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @".productVersion")]
-        protected IWebElement textVersion { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"#userImploadName")]
-        protected IWebElement textCurrentUser { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"#app_layout_AnimatedLink_0")]
-        protected IWebElement linkSettings { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @"#app_layout_AnimatedLink_1")]
-        protected IWebElement linkLogout { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @".help")]
-        protected IWebElement linkHelp { get; set; }
-#endregion
-
-        #region Search and Filters, Caption
+        #region Search and Filters
 
         [FindsBy(How = How.CssSelector, Using = @".panel")]
         protected IWebElement blockFilters { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @".search")]
         protected IWebElement blockSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".caption")]
-        protected IWebElement labelCaption { get; set; }
-
-        #endregion
-
-        #region mainModalDialog
-
-        [FindsBy(How = How.CssSelector, Using = @"#mainModalDialog")]
-        protected IWebElement mainModalDialog { get; set; }
 
         #endregion
 
@@ -113,7 +61,7 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new ipmpLoginPage();
+            var LoginPage = new LoginPage();
             var tycoPage = LoginPage.Login();
             tycoPage.WaitLoadPage();
             var PanelsPage = tycoPage.Panels();

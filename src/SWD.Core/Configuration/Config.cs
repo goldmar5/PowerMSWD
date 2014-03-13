@@ -74,6 +74,14 @@ namespace Swd.Core.Configuration
             }
         }
 
+        public static string applicationMainUrl
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["applicationMainUrl"];
+            }
+        }
+
         /// <summary>
         /// Add your own configuration parameters
         /// -------------------------------------

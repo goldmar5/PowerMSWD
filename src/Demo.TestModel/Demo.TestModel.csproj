@@ -54,6 +54,14 @@
     <Compile Include="PageDeclarations\CreateNewAccountPage.cs" />
     <Compile Include="PageDeclarations\EmptyPage.cs" />
     <Compile Include="PageDeclarations\DummyExamplePage.cs" />
+    <Compile Include="PageDeclarations\EventsPage.cs" />
+    <Compile Include="PageDeclarations\GroupPage.cs" />
+    <Compile Include="PageDeclarations\LoginPage.cs" />
+    <Compile Include="PageDeclarations\LogoutMenuPage.cs" />
+    <Compile Include="PageDeclarations\ProcessesPage.cs" />
+    <Compile Include="PageDeclarations\SystemPage.cs" />
+    <Compile Include="PageDeclarations\TycoPowerManagePage.cs" />
+    <Compile Include="PageDeclarations\UnitListPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

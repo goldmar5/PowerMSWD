@@ -35,13 +35,13 @@ namespace Demo.Tutorial
         ///
         /// Have you seen the browser appeared? O_O
         /// </summary>
-        [TestMethod]
-        public void S01_First_Step_Run_WebDriver_with_Firefox()
-        {
+        //[TestMethod]
+        //public void S01_First_Step_Run_WebDriver_with_Firefox()
+        //{
             
-            SwdBrowser.Driver.Url = "http://swd-tools.com";
+        //    SwdBrowser.Driver.Url = "http://swd-tools.com";
 
-        }
+        //}
 
         /// <summary>
         /// I hope the test code went  smoothly… Otherwise, please check the error provided in the test log. 
@@ -118,18 +118,18 @@ namespace Demo.Tutorial
         ///
         ///
         /// </summary>
-        [TestMethod]
-        public void S10_Change_the_configuration_and_open_local_page_in_Chrome()
-        {
-            // Btw, the method Ch00_OpenHtmlFile, uses SwdBrowser.Driver inside
-            DemoPages.Ch00_OpenHtmlFile("simple.html");
+        //[TestMethod]
+        //public void S10_Change_the_configuration_and_open_local_page_in_Chrome()
+        //{
+        //    // Btw, the method Ch00_OpenHtmlFile, uses SwdBrowser.Driver inside
+        //    DemoPages.Ch00_OpenHtmlFile("simple.html");
 
-            Console.Write(SwdBrowser.Driver.Title);
-            Console.Write("===========================");
-            Console.Write(SwdBrowser.Driver.PageSource);
+        //    Console.Write(SwdBrowser.Driver.Title);
+        //    Console.Write("===========================");
+        //    Console.Write(SwdBrowser.Driver.PageSource);
 
-            System.Threading.Thread.Sleep(5 * 1000); // Sleep for 5 seconsds
-        }
+        //    System.Threading.Thread.Sleep(5 * 1000); // Sleep for 5 seconsds
+        //}
 
     }
 }

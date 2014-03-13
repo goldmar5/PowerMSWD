@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Demo.TestModel;
 using Swd.Core.Pages;
+using Demo.TestModel.PageDeclarations;
 using Swd.Core.WebDriver;
 
 namespace Demo.TestProject.Smoke
@@ -16,25 +17,72 @@ namespace Demo.TestProject.Smoke
             // Implement Dispose inside page object in order to do cleanup
             using (page)
             {
-                page.Invoke();
-                page.VerifyExpectedElementsAreDisplayed();
+                try
+                {
+                    page.Invoke();
+                    page.VerifyExpectedElementsAreDisplayed();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    SwdBrowser.CloseDriver();
+                }         
             }
         }
 
         
         // Add testMethods for your new pages here:
         // *PageName*_VerifyExpectedElements()
-        
+
         [TestMethod]
-        public void EmptyPage_VerifyExpectedElements()
+        public void LogoutMenuPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.EmptyPage);
+            PageTest(MyPages.LogoutMenuPage);
         }
 
         [TestMethod]
-        public void CreateNewAccountPage_VerifyExpectedElements()
+        public void TycoPowerManagePage_VerifyExpectedElements()
         {
-            PageTest(MyPages.CreateNewAccountPage);
+            PageTest(MyPages.TycoPowerManagePage);
+        }
+
+        [TestMethod]
+        public void LoginPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.LoginPage);
+        }
+
+        [TestMethod]
+        public void UnitListPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.UnitListPage);
+        }
+
+        [TestMethod]
+        public void GroupPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.GroupPage);
+        }
+
+        [TestMethod]
+        public void EventsPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.EventsPage);
+        }
+
+        [TestMethod]
+        public void ProcessesPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.ProcessesPage);
+        }
+
+        [TestMethod]
+        public void SystemPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.SystemPage);
         }
     }
 }
