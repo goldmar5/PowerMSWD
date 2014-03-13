@@ -84,5 +84,11 @@ namespace Demo.TestProject.Smoke
         {
             PageTest(MyPages.SystemPage);
         }
+
+        [TestMethod]
+        public void UserSettingsPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.UserSettingsPage);
+        }
     }
 }

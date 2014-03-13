@@ -56,5 +56,6 @@ namespace Demo.TestModel
         public static EventsPage EventsPage { get { return GetPage<EventsPage>(); } }
         public static ProcessesPage ProcessesPage { get { return GetPage<ProcessesPage>(); } }
         public static SystemPage SystemPage { get { return GetPage<SystemPage>(); } }
+        public static UserSettingsPage UserSettingsPage { get { return GetPage<UserSettingsPage>(); } }
     }
 }

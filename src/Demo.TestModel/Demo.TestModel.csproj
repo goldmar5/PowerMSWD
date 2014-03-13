@@ -62,6 +62,7 @@
     <Compile Include="PageDeclarations\SystemPage.cs" />
     <Compile Include="PageDeclarations\TycoPowerManagePage.cs" />
     <Compile Include="PageDeclarations\UnitListPage.cs" />
+    <Compile Include="PageDeclarations\UserSettingsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

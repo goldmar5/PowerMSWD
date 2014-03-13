@@ -120,6 +120,12 @@ namespace Demo.TestModel
             return new SystemPage();
         }
 
+        public UserSettingsPage Settings()
+        {
+            linkSettings.Click();
+            return new UserSettingsPage();
+        }
+
         public LogoutMenuPage Logout()
         {
             linkLogout.Click();
