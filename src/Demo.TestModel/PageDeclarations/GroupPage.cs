@@ -45,7 +45,8 @@ namespace Demo.TestModel.PageDeclarations
             var tycoPage = LoginPage.Login();
             tycoPage.WaitLoadPage();
             var GroupsPage = tycoPage.Groups();
-            GroupsPage.WaitLoadPage();
+            if (!GroupsPage.WaitLoadPage())
+                throw new NotFoundException();
         }
 
         public override bool IsDisplayed()
@@ -83,10 +84,16 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("btnRemoveGroup", btnRemoveGroup);
         }
 
-        public void WaitLoadPage()
+        public bool WaitLoadPage()
         {
             Wait.UntilVisible(labelCaption, 10000);
+            string pageName = WhoAreYouPage();
             Wait.UntilDisapear(mainModalDialog, 15000);
+
+            if (pageName == "UNIT GROUP LIST")
+                return true;
+            else
+                return false;
         }
     }
 }

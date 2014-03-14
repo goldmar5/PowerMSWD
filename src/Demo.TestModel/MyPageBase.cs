@@ -7,6 +7,7 @@ using Swd.Core.Pages;
 using OpenQA.Selenium;
 using Demo.TestModel.PageDeclarations;
 using OpenQA.Selenium.Support.PageObjects;
+using Swd.Core.WebDriver;
 
 namespace Demo.TestModel
 {
@@ -88,6 +89,11 @@ namespace Demo.TestModel
         public virtual void Dispose()
         {
             // Does nothing at the moment
+        }
+
+        public string WhoAreYouPage()
+        {
+            return labelCaption.GetElementText();
         }
 
         public PanelsPage Panels()

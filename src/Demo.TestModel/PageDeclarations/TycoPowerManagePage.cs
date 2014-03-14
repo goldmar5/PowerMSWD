@@ -57,7 +57,7 @@ namespace Demo.TestModel.PageDeclarations
 
         public void WaitLoadPage()
         {
-            Wait.UntilVisible(imgWelcome, 10000);
+            Wait.UntilVisible(imgWelcome, 20000);
             Wait.UntilDisapear(mainModalDialog, 15000);
         }
     }
