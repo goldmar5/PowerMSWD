@@ -56,6 +56,14 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @"div.section + span")]
         protected IWebElement ddbActions { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
+        protected IWebElement txtSearch { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".search>a")]
+        protected IWebElement linkSearch { get; set; }
+        
+        
+
         #endregion
 
         #region Invoke() and IsDisplayed()
@@ -125,6 +133,12 @@ namespace Demo.TestModel.PageDeclarations
         {
             btnRemoteInspection.Click();
             return new RemoteInspectionPage();
+        }
+
+        public void Search(string SearchText)
+        {
+            txtSearch.SendKeys(SearchText);
+            linkSearch.Click();            
         }
         
     }

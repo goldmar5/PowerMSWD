@@ -52,6 +52,7 @@
     <Compile Include="MyPageBase.cs" />
     <Compile Include="MyPages.cs" />
     <Compile Include="PageDeclarations\CreateNewAccountPage.cs" />
+    <Compile Include="PageDeclarations\DiagnosticsPage.cs" />
     <Compile Include="PageDeclarations\EmptyPage.cs" />
     <Compile Include="PageDeclarations\DummyExamplePage.cs" />
     <Compile Include="PageDeclarations\EventsPage.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="PageDeclarations\GroupPage.cs" />
     <Compile Include="PageDeclarations\LoginPage.cs" />
     <Compile Include="PageDeclarations\LogoutMenuPage.cs" />
+    <Compile Include="PageDeclarations\PanelGeneralPage.cs" />
     <Compile Include="PageDeclarations\ProcessesPage.cs" />
     <Compile Include="PageDeclarations\RemoteInspectionPage.cs" />
     <Compile Include="PageDeclarations\SuspendedFaultsPage.cs" />

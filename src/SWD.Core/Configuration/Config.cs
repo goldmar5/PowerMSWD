@@ -82,6 +82,14 @@ namespace Swd.Core.Configuration
             }
         }
 
+        public static string panelID
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["panelID"];
+            }
+        }
+
         /// <summary>
         /// Add your own configuration parameters
         /// -------------------------------------
