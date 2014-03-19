@@ -16,9 +16,12 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class LoginPage : MyPageBase
+    public class LoginPage : BasePage
     {
         #region WebElements
+
+        [FindsBy(How = How.CssSelector, Using = @".loginContent")]
+        protected IWebElement containerLogin { get; set; }
 
         [FindsBy(How = How.XPath, Using = @"id(""dijit_form_ValidationTextBox_0"")")]
         protected IWebElement txtLogin { get; set; }
@@ -33,6 +36,8 @@ namespace Demo.TestModel.PageDeclarations
 
         [FindsBy(How = How.CssSelector, Using = @"#loginform .link")]
         protected IWebElement linkForgot { get; set; }
+
+        
 
         #endregion
 
@@ -50,19 +55,32 @@ namespace Demo.TestModel.PageDeclarations
 
         public override void VerifyExpectedElementsAreDisplayed()
         {
+            VerifyElementVisible("containerLogin", containerLogin);
             VerifyElementVisible("txtLogin", txtLogin);
             VerifyElementVisible("txtPassword", txtPassword);
             VerifyElementVisible("buttonLogIn", buttonLogIn);
             VerifyElementVisible("linkForgot", linkForgot);
-        }        
+        }
 
-        public TycoPowerManagePage Login()
+        public bool ItIsYou()
         {
-            MyPages.LoginPage.Invoke();
+            if (containerLogin.Displayed)
+                return true;
+            else
+                return false;
+        }
+
+        public void WaitLoadPage()
+        {
+            Wait.UntilVisible(containerLogin, 20000);
+        }
+
+        public LogoTycoPage Login()
+        {
             txtLogin.SendKeys("admin@visonic.com");
             txtPassword.SendKeys("Admin123");
             buttonLogIn.Click();
-            return new TycoPowerManagePage();
+            return new LogoTycoPage();
         }
     }
 }

@@ -13,28 +13,24 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-namespace Demo.TestModel.PageDeclarations
+namespace Demo.TestModel
 {
-    public class TycoPowerManagePage : MyPageBase
+    public class InfoPanelPage : GeneralHeaderPage
     {
         #region WebElements
-
-        [FindsBy(How = How.CssSelector, Using = @".welcome")]
-        protected IWebElement imgWelcome { get; set; }
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
+
         }
 
         public override bool IsDisplayed()
         {
-            return SwdBrowser.Driver.PageSource.Contains("class='welcome'");
+            throw new NotImplementedException();
+            return true;
         }
         #endregion
 
@@ -46,19 +42,17 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("tabEvents", tabEvents);
             VerifyElementVisible("tabProcesses", tabProcesses);
             VerifyElementVisible("tabSystem", tabSystem);
-            VerifyElementVisible("textVersion", textVersion);
-            VerifyElementVisible("textCurrentUser", textCurrentUser);
+            VerifyElementVisible("labelVersion", labelVersion);
+            VerifyElementVisible("labelCurrentUser", labelCurrentUser);
             VerifyElementVisible("linkSettings", linkSettings);
             VerifyElementVisible("linkLogout", linkLogout);
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
-            VerifyElementVisible("imgWelcome", imgWelcome);
-        }
 
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(imgWelcome, 20000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
+            #region Caption locator
+            VerifyElementVisible("labelCaption", labelCaption);
+            #endregion
         }
     }
 }
+

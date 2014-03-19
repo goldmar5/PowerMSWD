@@ -19,7 +19,7 @@ namespace Demo.TestModel
             for instance, switch to the frame or window when it would be required or cache 
             the created pageobject instance 
         */
-        public static T GetPage<T>() where T : MyPageBase, new()
+        public static T GetPage<T>() where T : BasePage, new()
         {
             T page = new T();
             return page;
@@ -49,7 +49,7 @@ namespace Demo.TestModel
         //=======================================================================================    
 
         public static LogoutMenuPage LogoutMenuPage { get { return GetPage<LogoutMenuPage>(); } }
-        public static TycoPowerManagePage TycoPowerManagePage { get { return GetPage<TycoPowerManagePage>(); } }
+        public static LogoTycoPage TycoPowerManagePage { get { return GetPage<LogoTycoPage>(); } }
         public static LoginPage LoginPage { get { return GetPage<LoginPage>(); } }
         public static PanelsPage PanelsPage { get { return GetPage<PanelsPage>(); } }
         public static GroupPage GroupPage { get { return GetPage<GroupPage>(); } }

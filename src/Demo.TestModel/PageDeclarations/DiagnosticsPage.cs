@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Demo.TestModel.PageDeclarations
 {
-    class DiagnosticsPage : PanelGeneralPage
+    class DiagnosticsPage : InfoPanelPage
     {
     }
 }

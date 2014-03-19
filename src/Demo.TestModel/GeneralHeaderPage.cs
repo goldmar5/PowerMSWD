@@ -11,48 +11,49 @@ using Swd.Core.WebDriver;
 
 namespace Demo.TestModel
 {
-    public abstract class MyPageBase : SelfTestingCorePage, IDisposable
+    public abstract class GeneralHeaderPage : BasePage
     {
+        public string caption;
 
         #region WebElements
 
         #region General Header WebElements
 
+        [FindsBy(How = How.CssSelector, Using = @".Header.clear")]
+        protected IWebElement classHeader { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".Title.clear")]
+        protected IWebElement classTitle { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".logoTyco")]
+        protected IWebElement tabLogoTyco { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = @"#menuItem_units_all a")]
         protected IWebElement tabPanels { get; set; }
-
 
         [FindsBy(How = How.CssSelector, Using = @"#menuItem_group a")]
         protected IWebElement tabGroups { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @"#menuItem_event a")]
         protected IWebElement tabEvents { get; set; }
-
 
         [FindsBy(How = How.CssSelector, Using = @"#menuItem_process a")]
         protected IWebElement tabProcesses { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @"#menuItem_system a")]
         protected IWebElement tabSystem { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @".productVersion")]
-        protected IWebElement textVersion { get; set; }
-
+        protected IWebElement labelVersion { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = @"#userImploadName")]
-        protected IWebElement textCurrentUser { get; set; }
-
+        protected IWebElement labelCurrentUser { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = @"#app_layout_AnimatedLink_0")]
         protected IWebElement linkSettings { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @"#app_layout_AnimatedLink_1")]
         protected IWebElement linkLogout { get; set; }
-
 
         [FindsBy(How = How.CssSelector, Using = @".help")]
         protected IWebElement linkHelp { get; set; }
@@ -68,32 +69,31 @@ namespace Demo.TestModel
 
         #endregion
 
-        #endregion
+        #endregion      
 
-
-        // Verifies the expected WebElement to be Visible
-        public virtual void VerifyElementVisible(string elementName, IWebElement webElement)
-        {
-            if (!webElement.Displayed)
-            {
-                string message = "Error: WebElement with name <" + elementName + ">\n"
-                                 + "was expected to be visible," 
-                                 + "but the element was not found on the page.";
-
-                throw new Exception();
-            }
-        }
-
-        // Override and implement this method, 
-        // in case you want the pages to clean up
-        public virtual void Dispose()
-        {
-            // Does nothing at the moment
-        }
-
-        public string WhoAreYouPage()
+        public string GetCaption()
         {
             return labelCaption.GetElementText();
+        }
+
+        public virtual bool ItIsYou()
+        {
+            if (GetCaption() == caption)
+                return true;
+            else
+                return false;
+        }
+
+        public virtual void WaitLoadPage()
+        {
+            Wait.UntilVisible(labelCaption, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+        }
+
+        public LogoTycoPage LogoTyco()
+        {
+            tabLogoTyco.Click();
+            return new LogoTycoPage();
         }
 
         public PanelsPage Panels()
@@ -137,5 +137,12 @@ namespace Demo.TestModel
             linkLogout.Click();
             return new LogoutMenuPage();
         }
+
+        public void Help()
+        {
+            linkHelp.Click();
+        }
     }
 }
+
+

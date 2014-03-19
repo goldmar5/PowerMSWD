@@ -12,7 +12,7 @@ namespace Demo.TestProject.Smoke
     public class Smoke_test_for_each_pageobject
     {
 
-        public void PageTest<PAGE>(PAGE page) where PAGE : MyPageBase, new()
+        public void PageTest<PAGE>(PAGE page) where PAGE : BasePage, new()
         {
             // Implement Dispose inside page object in order to do cleanup
             using (page)

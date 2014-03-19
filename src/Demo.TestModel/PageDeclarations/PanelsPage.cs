@@ -15,54 +15,36 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class PanelsPage : MyPageBase
+    public class PanelsPage : SearchFilterPage
     {
+
+        public PanelsPage()
+        {
+            caption = "UNIT LIST";
+        }
+
         #region WebElements
-
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        #endregion
 
         [FindsBy(How = How.CssSelector, Using = @".panelsSubmenu a:nth-child(1)")]
         protected IWebElement btnAllPanels { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @".panelsSubmenu a:nth-child(2)")]
         protected IWebElement btnFaultsMonitoring { get; set; }
-
 
         [FindsBy(How = How.CssSelector, Using = @".panelsSubmenu a:nth-child(3)")]
         protected IWebElement btnSuspendedFaults { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @".panelsSubmenu a:nth-child(4)")]
         protected IWebElement btnRemoteInspection { get; set; }
-
 
         [FindsBy(How = How.CssSelector, Using = @".add")]
         protected IWebElement btnAddUnit { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @"[id$=RemoveBusyButton]")]
         protected IWebElement btnRemoveUnit { get; set; }
 
-
         [FindsBy(How = How.CssSelector, Using = @"div.section + span")]
         protected IWebElement ddbActions { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
-        protected IWebElement txtSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search>a")]
-        protected IWebElement linkSearch { get; set; }
-        
-        
 
         #endregion
 
@@ -70,10 +52,20 @@ namespace Demo.TestModel.PageDeclarations
         public override void Invoke()
         {
             var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
-            var PanelsPage = tycoPage.Panels();
-            PanelsPage.WaitLoadPage();
+            LoginPage.Invoke();
+            LoginPage.WaitLoadPage();
+            if (LoginPage.ItIsYou())
+            {
+                var tycoPage = LoginPage.Login();
+                tycoPage.WaitLoadPage();
+                if (tycoPage.ItIsYou())
+                {
+                    var PanelsPage = tycoPage.Panels();
+                    PanelsPage.WaitLoadPage();
+                    if (!PanelsPage.ItIsYou())
+                        throw new NotFoundException();
+                }                
+            }       
         }
 
         public override bool IsDisplayed()
@@ -81,6 +73,7 @@ namespace Demo.TestModel.PageDeclarations
             throw new NotImplementedException();
             return true;
         }
+
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()
@@ -91,8 +84,8 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("tabEvents", tabEvents);
             VerifyElementVisible("tabProcesses", tabProcesses);
             VerifyElementVisible("tabSystem", tabSystem);
-            VerifyElementVisible("textVersion", textVersion);
-            VerifyElementVisible("textCurrentUser", textCurrentUser);
+            VerifyElementVisible("labelVersion", labelVersion);
+            VerifyElementVisible("labelCurrentUser", labelCurrentUser);
             VerifyElementVisible("linkSettings", linkSettings);
             VerifyElementVisible("linkLogout", linkLogout);
             VerifyElementVisible("linkHelp", linkHelp);
@@ -109,12 +102,6 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("btnAddUnit", btnAddUnit);
             VerifyElementVisible("btnRemoveUnit", btnRemoveUnit);
             VerifyElementVisible("ddbActions", ddbActions);            
-        }
-
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
         }
 
         public FaultsMonitoringPage FaultsMonitoring()

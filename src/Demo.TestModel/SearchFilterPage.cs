@@ -13,9 +13,11 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-namespace Demo.TestModel.PageDeclarations
+using Demo.TestModel.PageDeclarations;
+
+namespace Demo.TestModel
 {
-    public class RemoteInspectionPage : SearchFilterPage
+    public class SearchFilterPage : GeneralHeaderPage
     {
         #region WebElements
 
@@ -27,16 +29,13 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @".search")]
         protected IWebElement blockSearch { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
+        protected IWebElement txtSearch { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".search>a")]
+        protected IWebElement linkSearch { get; set; }
+
         #endregion
-
-        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionScheduleBusyButton")]
-        protected IWebElement btnSchedule { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionInitiateBusyButton")]
-        protected IWebElement btnInitiateInspection { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".unitRemoteInspectionFilter")]
-        protected IWebElement blockRemoteInspectionFilter { get; set; }
 
         #endregion
 
@@ -46,10 +45,8 @@ namespace Demo.TestModel.PageDeclarations
             var LoginPage = new LoginPage();
             var tycoPage = LoginPage.Login();
             tycoPage.WaitLoadPage();
-            var PanelsPage = tycoPage.Panels();
-            PanelsPage.WaitLoadPage();
-            var RemoteInspection = PanelsPage.RemoteInspection();
-            RemoteInspection.WaitLoadPage();
+            var ProcessesPage = tycoPage.Processes();
+            ProcessesPage.WaitLoadPage();
         }
 
         public override bool IsDisplayed()
@@ -82,16 +79,6 @@ namespace Demo.TestModel.PageDeclarations
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
-
-            VerifyElementVisible("btnSchedule", btnSchedule);
-            VerifyElementVisible("btnInitiateInspection", btnInitiateInspection);
-            VerifyElementVisible("blockRemoteInspectionFilter", blockRemoteInspectionFilter);
-        }
-
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
         }
     }
 }

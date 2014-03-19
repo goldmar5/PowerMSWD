@@ -15,7 +15,7 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class EventsPage : MyPageBase
+    public class EventsPage : SearchFilterPage
     {
         #region WebElements
 
@@ -56,8 +56,8 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("tabEvents", tabEvents);
             VerifyElementVisible("tabProcesses", tabProcesses);
             VerifyElementVisible("tabSystem", tabSystem);
-            VerifyElementVisible("textVersion", textVersion);
-            VerifyElementVisible("textCurrentUser", textCurrentUser);
+            VerifyElementVisible("labelVersion", labelVersion);
+            VerifyElementVisible("labelCurrentUser", labelCurrentUser);
             VerifyElementVisible("linkSettings", linkSettings);
             VerifyElementVisible("linkLogout", linkLogout);
             VerifyElementVisible("linkHelp", linkHelp);
@@ -71,12 +71,6 @@ namespace Demo.TestModel.PageDeclarations
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
-        }
-
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
         }
     }
 }

@@ -15,25 +15,12 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class SuspendedFaultsPage : SearchFilterPage
+    public class LogoTycoPage : GeneralHeaderPage
     {
         #region WebElements
 
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        #endregion
-
-        [FindsBy(How = How.CssSelector, Using = @"#unitReassignBusyButton")]
-        protected IWebElement btnReassign { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#unitResumeFaultsBusyButton")]
-        protected IWebElement btnResumeFaults { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @".welcome")]
+        protected IWebElement imgWelcome { get; set; }
 
         #endregion
 
@@ -43,16 +30,11 @@ namespace Demo.TestModel.PageDeclarations
             var LoginPage = new LoginPage();
             var tycoPage = LoginPage.Login();
             tycoPage.WaitLoadPage();
-            var PanelsPage = tycoPage.Panels();
-            PanelsPage.WaitLoadPage();
-            var SuspendedFaults = PanelsPage.SuspendedFaults();
-            SuspendedFaults.WaitLoadPage();
         }
 
         public override bool IsDisplayed()
         {
-            throw new NotImplementedException();
-            return true;
+            return SwdBrowser.Driver.PageSource.Contains("class='welcome'");
         }
         #endregion
 
@@ -70,24 +52,21 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("linkLogout", linkLogout);
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
-
-            #region Search and Filters
-            VerifyElementVisible("blockFilters", blockFilters);
-            VerifyElementVisible("blockSearch", blockSearch);
-            #endregion
-
-            #region Caption locator
-            VerifyElementVisible("labelCaption", labelCaption);
-            #endregion
-
-            VerifyElementVisible("btnReassign", btnReassign);
-            VerifyElementVisible("btnResumeFaults", btnResumeFaults);
+            VerifyElementVisible("imgWelcome", imgWelcome);
         }
 
-        public void WaitLoadPage()
+        public override void WaitLoadPage()
         {
-            Wait.UntilVisible(labelCaption, 10000);
+            Wait.UntilVisible(imgWelcome, 20000);
             Wait.UntilDisapear(mainModalDialog, 15000);
+        }
+
+        public override bool ItIsYou()
+        {
+            if (imgWelcome.Displayed)
+                return true;
+            else
+                return false;
         }
     }
 }

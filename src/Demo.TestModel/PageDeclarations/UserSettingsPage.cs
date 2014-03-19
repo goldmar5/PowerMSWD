@@ -15,7 +15,7 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class UserSettingsPage : MyPageBase
+    public class UserSettingsPage : GeneralHeaderPage
     {
         #region WebElements
 
@@ -82,8 +82,8 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("tabEvents", tabEvents);
             VerifyElementVisible("tabProcesses", tabProcesses);
             VerifyElementVisible("tabSystem", tabSystem);
-            VerifyElementVisible("textVersion", textVersion);
-            VerifyElementVisible("textCurrentUser", textCurrentUser);
+            VerifyElementVisible("labelVersion", labelVersion);
+            VerifyElementVisible("labelCurrentUser", labelCurrentUser);
             VerifyElementVisible("linkSettings", linkSettings);
             VerifyElementVisible("linkLogout", linkLogout);
             VerifyElementVisible("linkHelp", linkHelp);

@@ -13,22 +13,18 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
+using Demo.TestModel;
+
 namespace Demo.TestModel.PageDeclarations
 {
-    public class GroupPage : MyPageBase
+    public class GroupPage : SearchFilterPage
     {
+        public GroupPage()
+        {
+            caption = "UNIT GROUP LIST";
+        }
+
         #region WebElements
-
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        #endregion
 
         [FindsBy(How = How.CssSelector, Using = @".add")]
         protected IWebElement btnAddGroup { get; set; }
@@ -45,8 +41,7 @@ namespace Demo.TestModel.PageDeclarations
             var tycoPage = LoginPage.Login();
             tycoPage.WaitLoadPage();
             var GroupsPage = tycoPage.Groups();
-            if (!GroupsPage.WaitLoadPage())
-                throw new NotFoundException();
+            GroupsPage.WaitLoadPage();
         }
 
         public override bool IsDisplayed()
@@ -64,8 +59,8 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("tabEvents", tabEvents);
             VerifyElementVisible("tabProcesses", tabProcesses);
             VerifyElementVisible("tabSystem", tabSystem);
-            VerifyElementVisible("textVersion", textVersion);
-            VerifyElementVisible("textCurrentUser", textCurrentUser);
+            VerifyElementVisible("labelVersion", labelVersion);
+            VerifyElementVisible("labelCurrentUser", labelCurrentUser);
             VerifyElementVisible("linkSettings", linkSettings);
             VerifyElementVisible("linkLogout", linkLogout);
             VerifyElementVisible("linkHelp", linkHelp);
@@ -82,18 +77,6 @@ namespace Demo.TestModel.PageDeclarations
 
             VerifyElementVisible("btnAddGroup", btnAddGroup);
             VerifyElementVisible("btnRemoveGroup", btnRemoveGroup);
-        }
-
-        public bool WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            string pageName = WhoAreYouPage();
-            Wait.UntilDisapear(mainModalDialog, 15000);
-
-            if (pageName == "UNIT GROUP LIST")
-                return true;
-            else
-                return false;
         }
     }
 }

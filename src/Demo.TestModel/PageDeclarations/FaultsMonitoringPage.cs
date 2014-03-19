@@ -15,7 +15,7 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class FaultsMonitoringPage : MyPageBase
+    public class FaultsMonitoringPage : SearchFilterPage
     {
         #region WebElements
 
@@ -67,8 +67,8 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("tabEvents", tabEvents);
             VerifyElementVisible("tabProcesses", tabProcesses);
             VerifyElementVisible("tabSystem", tabSystem);
-            VerifyElementVisible("textVersion", textVersion);
-            VerifyElementVisible("textCurrentUser", textCurrentUser);
+            VerifyElementVisible("labelVersion", labelVersion);
+            VerifyElementVisible("labelCurrentUser", labelCurrentUser);
             VerifyElementVisible("linkSettings", linkSettings);
             VerifyElementVisible("linkLogout", linkLogout);
             VerifyElementVisible("linkHelp", linkHelp);
@@ -86,12 +86,6 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("btnReassign", btnReassign);
             VerifyElementVisible("btnSuspendFaults", btnSuspendFaults);
             VerifyElementVisible("btnResolveFaults", btnResolveFaults);
-        }
-
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
         }
     }
 }

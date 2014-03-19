@@ -49,12 +49,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyPageBase.cs" />
+    <Compile Include="GeneralHeaderPage.cs" />
+    <Compile Include="BasePage.cs" />
+    <Compile Include="InfoPanelPage.cs" />
     <Compile Include="MyPages.cs" />
-    <Compile Include="PageDeclarations\CreateNewAccountPage.cs" />
     <Compile Include="PageDeclarations\DiagnosticsPage.cs" />
-    <Compile Include="PageDeclarations\EmptyPage.cs" />
-    <Compile Include="PageDeclarations\DummyExamplePage.cs" />
     <Compile Include="PageDeclarations\EventsPage.cs" />
     <Compile Include="PageDeclarations\FaultsMonitoringPage.cs" />
     <Compile Include="PageDeclarations\GroupPage.cs" />
@@ -65,10 +64,11 @@
     <Compile Include="PageDeclarations\RemoteInspectionPage.cs" />
     <Compile Include="PageDeclarations\SuspendedFaultsPage.cs" />
     <Compile Include="PageDeclarations\SystemPage.cs" />
-    <Compile Include="PageDeclarations\TycoPowerManagePage.cs" />
+    <Compile Include="PageDeclarations\LogoTycoPage.cs" />
     <Compile Include="PageDeclarations\PanelsPage.cs" />
     <Compile Include="PageDeclarations\UserSettingsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchFilterPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SWD.Core\Swd.Core.csproj">
