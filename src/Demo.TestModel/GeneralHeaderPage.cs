@@ -13,7 +13,7 @@ namespace Demo.TestModel
 {
     public abstract class GeneralHeaderPage : BasePage
     {
-        public string caption;
+        public string expectedCaption;
 
         #region WebElements
 
@@ -71,14 +71,14 @@ namespace Demo.TestModel
 
         #endregion      
 
-        public string GetCaption()
+        public string CurrentCaption()
         {
             return labelCaption.GetElementText();
         }
 
         public virtual bool ItIsYou()
         {
-            if (GetCaption() == caption)
+            if (CurrentCaption() == expectedCaption)
                 return true;
             else
                 return false;

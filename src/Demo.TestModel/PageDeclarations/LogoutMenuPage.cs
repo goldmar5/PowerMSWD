@@ -62,13 +62,7 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("linkFullLogout", linkFullLogout);
         }
 
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
-        }
-
-        public void Logout()
+        public void FullLogout()
         {
             linkFullLogout.Click();
         }

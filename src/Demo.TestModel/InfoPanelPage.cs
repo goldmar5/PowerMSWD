@@ -29,7 +29,6 @@ namespace Demo.TestModel
 
         public override bool IsDisplayed()
         {
-            throw new NotImplementedException();
             return true;
         }
         #endregion

@@ -69,7 +69,6 @@ namespace Demo.TestModel.PageDeclarations
 
         public override bool IsDisplayed()
         {
-            throw new NotImplementedException();
             return true;
         }
         #endregion
@@ -105,12 +104,6 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("btnDiscardChanges", btnDiscardChanges);
             VerifyElementVisible("labelPhone", labelPhone);
             VerifyElementVisible("labelCountry", labelCountry);
-        }
-
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Demo.TestModel.PageDeclarations
 
         public PanelsPage()
         {
-            caption = "UNIT LIST";
+            expectedCaption = "UNIT LIST";
         }
 
         #region WebElements
@@ -70,7 +70,6 @@ namespace Demo.TestModel.PageDeclarations
 
         public override bool IsDisplayed()
         {
-            throw new NotImplementedException();
             return true;
         }
 

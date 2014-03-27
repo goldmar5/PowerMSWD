@@ -19,16 +19,6 @@ namespace Demo.TestModel.PageDeclarations
     {
         #region WebElements
 
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        #endregion
-
         [FindsBy(How = How.CssSelector, Using = @"#unitReassignBusyButton")]
         protected IWebElement btnReassign { get; set; }
 
@@ -51,7 +41,6 @@ namespace Demo.TestModel.PageDeclarations
 
         public override bool IsDisplayed()
         {
-            throw new NotImplementedException();
             return true;
         }
         #endregion
@@ -82,12 +71,6 @@ namespace Demo.TestModel.PageDeclarations
 
             VerifyElementVisible("btnReassign", btnReassign);
             VerifyElementVisible("btnResumeFaults", btnResumeFaults);
-        }
-
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
         }
     }
 }

@@ -105,11 +105,5 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
         }
-
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 20000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
-        }
     }
 }

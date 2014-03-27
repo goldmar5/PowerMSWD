@@ -19,17 +19,6 @@ namespace Demo.TestModel.PageDeclarations
     {
         #region WebElements
 
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        #endregion
-
         [FindsBy(How = How.CssSelector, Using = @"#processStopBusyButton")]
         protected IWebElement btnStop { get; set; }
 
@@ -47,7 +36,6 @@ namespace Demo.TestModel.PageDeclarations
 
         public override bool IsDisplayed()
         {
-            throw new NotImplementedException();
             return true;
         }
         #endregion
@@ -77,12 +65,6 @@ namespace Demo.TestModel.PageDeclarations
             #endregion
 
             VerifyElementVisible("btnStop", btnStop);
-        }
-
-        public void WaitLoadPage()
-        {
-            Wait.UntilVisible(labelCaption, 10000);
-            Wait.UntilDisapear(mainModalDialog, 15000);
         }
     }
 }

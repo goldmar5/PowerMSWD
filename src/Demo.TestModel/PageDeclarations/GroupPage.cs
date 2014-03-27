@@ -21,7 +21,7 @@ namespace Demo.TestModel.PageDeclarations
     {
         public GroupPage()
         {
-            caption = "UNIT GROUP LIST";
+            expectedCaption = "UNIT GROUP LIST";
         }
 
         #region WebElements
@@ -46,7 +46,6 @@ namespace Demo.TestModel.PageDeclarations
 
         public override bool IsDisplayed()
         {
-            throw new NotImplementedException();
             return true;
         }
         #endregion
