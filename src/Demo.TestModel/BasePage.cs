@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Swd.Core;
 using Swd.Core.Pages;
+using Swd.Core.Configuration;
 using OpenQA.Selenium;
 using Demo.TestModel.PageDeclarations;
 using OpenQA.Selenium.Support.PageObjects;
@@ -31,6 +32,14 @@ namespace Demo.TestModel
         public virtual void Dispose()
         {
             // Does nothing at the moment
+        }
+
+        public LoginPage GetLoginPage()
+        {
+            var loginPage = new LoginPage();
+            SwdBrowser.Driver.Url = Config.applicationMainUrl;
+            loginPage.WaitLoadPage();
+            return loginPage;
         }
     }
 }

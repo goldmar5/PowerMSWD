@@ -27,9 +27,8 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
+            var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
         }
 
         public override bool IsDisplayed()
@@ -59,14 +58,17 @@ namespace Demo.TestModel.PageDeclarations
         {
             Wait.UntilVisible(imgWelcome, 20000);
             Wait.UntilDisapear(mainModalDialog, 15000);
+            if (this.ItIsYou())
+            {
+                throw new NoSuchElementException("LogoTycoPage didn't appear as expected");
+            }
         }
 
         public override bool ItIsYou()
         {
             if (imgWelcome.Displayed)
-                return true;
-            else
                 return false;
+            return true;
         }
     }
 }

@@ -17,7 +17,6 @@ namespace Demo.TestModel.PageDeclarations
 {
     public class PanelsPage : SearchFilterPage
     {
-
         public PanelsPage()
         {
             expectedCaption = "UNIT LIST";
@@ -51,21 +50,9 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            LoginPage.Invoke();
-            LoginPage.WaitLoadPage();
-            if (LoginPage.ItIsYou())
-            {
-                var tycoPage = LoginPage.Login();
-                tycoPage.WaitLoadPage();
-                if (tycoPage.ItIsYou())
-                {
-                    var PanelsPage = tycoPage.Panels();
-                    PanelsPage.WaitLoadPage();
-                    if (!PanelsPage.ItIsYou())
-                        throw new NotFoundException();
-                }                
-            }       
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var PanelsPage = tycoPage.Panels();
         }
 
         public override bool IsDisplayed()
@@ -106,19 +93,25 @@ namespace Demo.TestModel.PageDeclarations
         public FaultsMonitoringPage FaultsMonitoring()
         {
             btnFaultsMonitoring.Click();
-            return new FaultsMonitoringPage();
+            FaultsMonitoringPage FaultsMonitoringPage = new FaultsMonitoringPage();
+            FaultsMonitoringPage.WaitLoadPage();
+            return FaultsMonitoringPage;
         }
 
         public SuspendedFaultsPage SuspendedFaults()
         {
             btnSuspendedFaults.Click();
-            return new SuspendedFaultsPage();
+            SuspendedFaultsPage SuspendedFaultsPage = new SuspendedFaultsPage();
+            SuspendedFaultsPage.WaitLoadPage();
+            return SuspendedFaultsPage;
         }
 
         public RemoteInspectionPage RemoteInspection()
         {
             btnRemoteInspection.Click();
-            return new RemoteInspectionPage();
+            RemoteInspectionPage RemoteInspectionPage = new RemoteInspectionPage();
+            RemoteInspectionPage.WaitLoadPage();
+            return RemoteInspectionPage;
         }
 
         public void Search(string SearchText)

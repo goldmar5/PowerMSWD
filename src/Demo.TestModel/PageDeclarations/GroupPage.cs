@@ -37,11 +37,9 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
-            var GroupsPage = tycoPage.Groups();
-            GroupsPage.WaitLoadPage();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var groupsPage = tycoPage.Groups();
         }
 
         public override bool IsDisplayed()

@@ -17,6 +17,12 @@ namespace Demo.TestModel.PageDeclarations
 {
     public class SystemPage : GeneralHeaderPage
     {
+
+        public SystemPage()
+        {
+            expectedCaption = "SYSTEM MENU";
+        }
+
         #region WebElements
 
         #endregion
@@ -24,13 +30,9 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            LoginPage.Invoke();
-            LoginPage.WaitLoadPage();
+            var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
             var SystemPage = tycoPage.System();
-            SystemPage.WaitLoadPage();
         }
 
         public override bool IsDisplayed()

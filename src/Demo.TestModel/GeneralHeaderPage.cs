@@ -79,63 +79,82 @@ namespace Demo.TestModel
         public virtual bool ItIsYou()
         {
             if (CurrentCaption() == expectedCaption)
-                return true;
-            else
                 return false;
+            return true;
         }
 
         public virtual void WaitLoadPage()
         {
-            Wait.UntilVisible(labelCaption, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
+            Wait.UntilVisible(labelCaption, 20000);
+            if (this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
 
         public LogoTycoPage LogoTyco()
         {
             tabLogoTyco.Click();
-            return new LogoTycoPage();
+            LogoTycoPage LogoTycoPage = new LogoTycoPage();
+            LogoTycoPage.WaitLoadPage();
+            return LogoTycoPage;
         }
 
         public PanelsPage Panels()
         {
             tabPanels.Click();
-            return new PanelsPage();
+            PanelsPage panelPage = new PanelsPage();
+            panelPage.WaitLoadPage();
+            return panelPage;
         }
 
         public GroupPage Groups()
         {
             tabGroups.Click();
-            return new GroupPage();
+            GroupPage GroupPage = new GroupPage();
+            GroupPage.WaitLoadPage();
+            return GroupPage;            
         }
 
         public EventsPage Events()
         {
             tabEvents.Click();
-            return new EventsPage();
+            EventsPage EventsPage = new EventsPage();
+            EventsPage.WaitLoadPage();
+            return EventsPage;
         }
 
         public ProcessesPage Processes()
         {
             tabProcesses.Click();
-            return new ProcessesPage();
+            ProcessesPage ProcessesPage = new ProcessesPage();
+            ProcessesPage.WaitLoadPage();
+            return ProcessesPage;
         }
 
         public SystemPage System()
         {
             tabSystem.Click();
-            return new SystemPage();
+            SystemPage SystemPage = new SystemPage();
+            SystemPage.WaitLoadPage();
+            return SystemPage;
         }
 
         public UserSettingsPage Settings()
         {
             linkSettings.Click();
-            return new UserSettingsPage();
+            UserSettingsPage UserSettingsPage = new UserSettingsPage();
+            UserSettingsPage.WaitLoadPage();
+            return UserSettingsPage;
         }
 
         public LogoutMenuPage Logout()
         {
             linkLogout.Click();
-            return new LogoutMenuPage();
+            LogoutMenuPage logoutPage = new LogoutMenuPage();
+            logoutPage.WaitLoadPage();
+            return logoutPage;
         }
 
         public void Help()

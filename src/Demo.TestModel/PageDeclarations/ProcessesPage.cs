@@ -17,6 +17,12 @@ namespace Demo.TestModel.PageDeclarations
 {
     public class ProcessesPage : SearchFilterPage
     {
+
+        public ProcessesPage()
+        {
+            expectedCaption = "PROCESS LIST";
+        }
+
         #region WebElements
 
         [FindsBy(How = How.CssSelector, Using = @"#processStopBusyButton")]
@@ -27,11 +33,9 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
-            var ProcessesPage = tycoPage.Processes();
-            ProcessesPage.WaitLoadPage();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var processesPage = tycoPage.Processes();
         }
 
         public override bool IsDisplayed()

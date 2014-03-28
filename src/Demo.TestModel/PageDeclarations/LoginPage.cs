@@ -43,8 +43,10 @@ namespace Demo.TestModel.PageDeclarations
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
-        {
+        {            
+            var loginPage = new LoginPage();
             SwdBrowser.Driver.Url = Config.applicationMainUrl;
+            loginPage.WaitLoadPage();
         }
 
         public override bool IsDisplayed()
@@ -66,21 +68,26 @@ namespace Demo.TestModel.PageDeclarations
         {
             if (containerLogin.Displayed)
                 return true;
-            else
-                return false;
+            return false;
         }
 
         public void WaitLoadPage()
         {
             Wait.UntilVisible(containerLogin, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException();
+            }
         }
 
         public LogoTycoPage Login()
         {
-            txtLogin.SendKeys("admin@visonic.com");
-            txtPassword.SendKeys("Admin123");
+            txtLogin.SendKeys(Config.applicationUserLogin);
+            txtPassword.SendKeys(Config.applicationUserPassword);
             buttonLogIn.Click();
-            return new LogoTycoPage();
+            var logoTycoPage = new LogoTycoPage();
+            logoTycoPage.WaitLoadPage();
+            return logoTycoPage;
         }
     }
 }

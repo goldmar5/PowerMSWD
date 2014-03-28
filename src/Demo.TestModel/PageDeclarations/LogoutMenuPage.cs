@@ -17,6 +17,11 @@ namespace Demo.TestModel.PageDeclarations
 {
     public class LogoutMenuPage : GeneralHeaderPage
     {
+        public LogoutMenuPage()
+        {
+            expectedCaption = "LOGOUT MENU";
+        }
+
         #region WebElements
 
         [FindsBy(How = How.CssSelector, Using = @"#logout_alink")]
@@ -27,11 +32,9 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
             var LogoutPage = tycoPage.Logout();
-            LogoutPage.WaitLoadPage();
         }
 
         public override bool IsDisplayed()

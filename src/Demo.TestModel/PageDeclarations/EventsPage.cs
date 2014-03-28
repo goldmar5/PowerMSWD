@@ -17,6 +17,12 @@ namespace Demo.TestModel.PageDeclarations
 {
     public class EventsPage : SearchFilterPage
     {
+
+        public EventsPage()
+        {
+            expectedCaption = "EVENT LIST";
+        }
+
         #region WebElements
 
         #endregion
@@ -24,11 +30,9 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
             var EventsPage = tycoPage.Events();
-            EventsPage.WaitLoadPage();
         }
 
         public override bool IsDisplayed()

@@ -82,6 +82,22 @@ namespace Swd.Core.Configuration
             }
         }
 
+        public static string applicationUserLogin
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["applicationUserLogin"];
+            }
+        }
+
+        public static string applicationUserPassword
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["applicationUserPassword"];
+            }
+        }
+
         public static string panelID
         {
             get

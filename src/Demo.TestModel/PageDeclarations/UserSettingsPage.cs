@@ -17,6 +17,12 @@ namespace Demo.TestModel.PageDeclarations
 {
     public class UserSettingsPage : GeneralHeaderPage
     {
+
+        public UserSettingsPage()
+        {
+            expectedCaption = "SETTINGS MENU";
+        }
+
         #region WebElements
 
         [FindsBy(How = How.CssSelector, Using = @"#usr_phone")]
@@ -60,11 +66,9 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
+            var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
             var UserSettingsPage = tycoPage.Settings();
-            UserSettingsPage.WaitLoadPage();
         }
 
         public override bool IsDisplayed()

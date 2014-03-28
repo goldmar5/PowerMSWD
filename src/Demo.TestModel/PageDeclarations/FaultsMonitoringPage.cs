@@ -17,6 +17,12 @@ namespace Demo.TestModel.PageDeclarations
 {
     public class FaultsMonitoringPage : SearchFilterPage
     {
+
+        public FaultsMonitoringPage()
+        {
+            expectedCaption = "FAULTY LIST";
+        }
+
         #region WebElements
 
         [FindsBy(How = How.CssSelector, Using = @"#unitReassignBusyButton")]
@@ -33,13 +39,10 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
-            var PanelsPage = tycoPage.Panels();
-            PanelsPage.WaitLoadPage();
-            var FaultsMonitoring = PanelsPage.FaultsMonitoring();
-            FaultsMonitoring.WaitLoadPage();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var panelsPage = tycoPage.Panels();
+            var faultsMonitoring = panelsPage.FaultsMonitoring();
         }
 
         public override bool IsDisplayed()
@@ -75,6 +78,16 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("btnReassign", btnReassign);
             VerifyElementVisible("btnSuspendFaults", btnSuspendFaults);
             VerifyElementVisible("btnResolveFaults", btnResolveFaults);
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(btnSuspendFaults, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }

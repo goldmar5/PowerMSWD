@@ -17,6 +17,12 @@ namespace Demo.TestModel.PageDeclarations
 {
     public class RemoteInspectionPage : SearchFilterPage
     {
+
+        public RemoteInspectionPage()
+        {
+            expectedCaption = "REMOTE INSPECTION LIST";
+        }
+
         #region WebElements
 
         [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionScheduleBusyButton")]
@@ -33,13 +39,10 @@ namespace Demo.TestModel.PageDeclarations
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
-            var PanelsPage = tycoPage.Panels();
-            PanelsPage.WaitLoadPage();
-            var RemoteInspection = PanelsPage.RemoteInspection();
-            RemoteInspection.WaitLoadPage();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var panelsPage = tycoPage.Panels();
+            var remoteInspection = panelsPage.RemoteInspection();
         }
 
         public override bool IsDisplayed()
@@ -75,6 +78,16 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("btnSchedule", btnSchedule);
             VerifyElementVisible("btnInitiateInspection", btnInitiateInspection);
             VerifyElementVisible("blockRemoteInspectionFilter", blockRemoteInspectionFilter);
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(btnSchedule, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }
