@@ -66,6 +66,14 @@
     <Compile Include="PageDeclarations\SystemPage.cs" />
     <Compile Include="PageDeclarations\LogoTycoPage.cs" />
     <Compile Include="PageDeclarations\PanelsPage.cs" />
+    <Compile Include="PageDeclarations\System\CentralStationsPage.cs" />
+    <Compile Include="PageDeclarations\System\ManageBaseConfigurationsPage.cs" />
+    <Compile Include="PageDeclarations\System\PowerLinkPackagesPage.cs" />
+    <Compile Include="PageDeclarations\System\PowerMaxPackagesPage.cs" />
+    <Compile Include="PageDeclarations\System\RemoteInspectionValuesPage.cs" />
+    <Compile Include="PageDeclarations\System\UserActionLogPage.cs" />
+    <Compile Include="PageDeclarations\System\UserRolesPage.cs" />
+    <Compile Include="PageDeclarations\System\UsersPage.cs" />
     <Compile Include="PageDeclarations\UserSettingsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchFilterPage.cs" />

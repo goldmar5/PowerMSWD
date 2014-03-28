@@ -24,21 +24,13 @@ namespace Demo.TestProject.Tests
         [TestMethod]
         public void SomeTest()
         {
-            var LoginPage = new LoginPage();
-            var loginPage = LoginPage.GetLoginPage();
-            var tycoPage = loginPage.Login();
-            var logoutPage = tycoPage.Logout();
-            logoutPage.FullLogout();
+            //Empty
         }
 
         [TestMethod]
         public void OtherTest()
         {
-            var LoginPage = new LoginPage();
-            var loginPage = LoginPage.GetLoginPage();
-            var tycoPage = loginPage.Login();
-            var logoutPage = tycoPage.Logout();
-            logoutPage.FullLogout();
+            //Empty
         }
     }
 }
