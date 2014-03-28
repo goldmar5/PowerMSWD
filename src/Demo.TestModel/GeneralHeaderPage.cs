@@ -79,15 +79,15 @@ namespace Demo.TestModel
         public virtual bool ItIsYou()
         {
             if (CurrentCaption() == expectedCaption)
-                return false;
-            return true;
+                return true;
+            return false;
         }
 
         public virtual void WaitLoadPage()
         {
             Wait.UntilDisapear(mainModalDialog, 20000);
             Wait.UntilVisible(labelCaption, 20000);
-            if (this.ItIsYou())
+            if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
             }

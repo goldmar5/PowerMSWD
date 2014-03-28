@@ -45,10 +45,6 @@ namespace Demo.TestModel.PageDeclarations
             var remoteInspection = panelsPage.RemoteInspection();
         }
 
-        public override bool IsDisplayed()
-        {
-            return true;
-        }
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()

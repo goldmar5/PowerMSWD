@@ -55,11 +55,6 @@ namespace Demo.TestModel.PageDeclarations
             var PanelsPage = tycoPage.Panels();
         }
 
-        public override bool IsDisplayed()
-        {
-            return true;
-        }
-
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()

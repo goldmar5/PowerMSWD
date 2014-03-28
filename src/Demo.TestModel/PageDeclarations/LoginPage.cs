@@ -49,10 +49,6 @@ namespace Demo.TestModel.PageDeclarations
             loginPage.WaitLoadPage();
         }
 
-        public override bool IsDisplayed()
-        {
-            return SwdBrowser.Driver.Url.Contains(@"212.90.164");
-        }
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()
@@ -76,7 +72,7 @@ namespace Demo.TestModel.PageDeclarations
             Wait.UntilVisible(containerLogin, 20000);
             if (!this.ItIsYou())
             {
-                throw new NoSuchElementException();
+                throw new NoSuchElementException("Something gone wrong. it's not a loginPage");
             }
         }
 

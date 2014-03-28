@@ -37,10 +37,6 @@ namespace Demo.TestModel.PageDeclarations
             var LogoutPage = tycoPage.Logout();
         }
 
-        public override bool IsDisplayed()
-        {
-            return SwdBrowser.Driver.PageSource.Contains(@"class='caption'>Logout Menu");
-        }
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()
@@ -68,6 +64,8 @@ namespace Demo.TestModel.PageDeclarations
         public void FullLogout()
         {
             linkFullLogout.Click();
+            LoginPage LoginPage = new LoginPage();
+            LoginPage.WaitLoadPage();
         }
     }
 }

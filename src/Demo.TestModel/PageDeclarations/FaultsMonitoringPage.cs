@@ -45,10 +45,6 @@ namespace Demo.TestModel.PageDeclarations
             var faultsMonitoring = panelsPage.FaultsMonitoring();
         }
 
-        public override bool IsDisplayed()
-        {
-            return true;
-        }
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()

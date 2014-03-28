@@ -38,10 +38,6 @@ namespace Demo.TestModel.PageDeclarations
             var processesPage = tycoPage.Processes();
         }
 
-        public override bool IsDisplayed()
-        {
-            return true;
-        }
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()

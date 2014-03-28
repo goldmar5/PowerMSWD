@@ -34,11 +34,7 @@ namespace Demo.TestModel.PageDeclarations
             var tycoPage = LoginPage.Login();
             var SystemPage = tycoPage.System();
         }
-
-        public override bool IsDisplayed()
-        {
-            return true;
-        }
+        
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()

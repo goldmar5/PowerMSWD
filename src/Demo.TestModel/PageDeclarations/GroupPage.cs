@@ -42,10 +42,6 @@ namespace Demo.TestModel.PageDeclarations
             var groupsPage = tycoPage.Groups();
         }
 
-        public override bool IsDisplayed()
-        {
-            return true;
-        }
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()

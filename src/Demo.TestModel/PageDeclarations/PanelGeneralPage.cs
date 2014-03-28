@@ -70,10 +70,6 @@ namespace Demo.TestModel.PageDeclarations
 
         }
 
-        public override bool IsDisplayed()
-        {
-            return SwdBrowser.Driver.PageSource.Contains("class='welcome'");
-        }
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()

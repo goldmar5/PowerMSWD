@@ -8,6 +8,5 @@ namespace Swd.Core.Pages
     public interface Invokable
     {
         void Invoke();
-        bool IsDisplayed();
     }
 }

@@ -30,11 +30,7 @@ namespace Demo.TestModel.PageDeclarations
             var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();
         }
-
-        public override bool IsDisplayed()
-        {
-            return SwdBrowser.Driver.PageSource.Contains("class='welcome'");
-        }
+                
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()

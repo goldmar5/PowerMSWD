@@ -60,6 +60,7 @@
     <Compile Include="Smoke\Smoke_test_for_each_pageobject.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\MainTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\App.config">

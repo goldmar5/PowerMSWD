@@ -35,10 +35,6 @@ namespace Demo.TestModel.PageDeclarations
             var EventsPage = tycoPage.Events();
         }
 
-        public override bool IsDisplayed()
-        {
-            return true;
-        }
         #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()
