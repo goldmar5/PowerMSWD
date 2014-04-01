@@ -25,15 +25,18 @@ namespace Demo.TestModel.PageDeclarations.System
 
         #region WebElements
 
+        [FindsBy(How = How.CssSelector, Using = @"#pmaxconfigbasicRemoveBusyButton")]
+        protected IWebElement btnRemoveConfigurations { get; set; }
+
         #endregion
 
         #region Invoke()
         public override void Invoke()
         {
-            //var loginPage = GetLoginPage();
-            //var tycoPage = loginPage.Login();
-            //var systemPage = tycoPage.System();
-            //var usersPage = systemPage.Users();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var systemPage = tycoPage.System();
+            systemPage.ManageBaseConfigurations();
 
         }
 
@@ -62,6 +65,20 @@ namespace Demo.TestModel.PageDeclarations.System
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
+
+            VerifyElementVisible("btnRemoveConfigurations", btnRemoveConfigurations);
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(btnRemoveConfigurations, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }

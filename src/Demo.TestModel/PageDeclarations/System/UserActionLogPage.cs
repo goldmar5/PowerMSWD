@@ -25,15 +25,18 @@ namespace Demo.TestModel.PageDeclarations.System
 
         #region WebElements
 
+        [FindsBy(How = How.CssSelector, Using = @"#useractionloglist")]
+        protected IWebElement gridUserActionLogList { get; set; }
+        
         #endregion
 
         #region Invoke()
         public override void Invoke()
         {
-            //var loginPage = GetLoginPage();
-            //var tycoPage = loginPage.Login();
-            //var systemPage = tycoPage.System();
-            //var usersPage = systemPage.Users();
+            var LoginPage = GetLoginPage();
+            var tycoPage = LoginPage.Login();
+            var systemPage = tycoPage.System();
+            systemPage.UserActionLog();
         }
 
         #endregion
@@ -61,6 +64,19 @@ namespace Demo.TestModel.PageDeclarations.System
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
+            VerifyElementVisible("gridUserActionLogList", gridUserActionLogList);
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(gridUserActionLogList, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }

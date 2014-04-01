@@ -15,12 +15,12 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class FaultsMonitoringPage : SearchFilterPage
+    public class SuspendedFaultsPage : SearchFilterPage
     {
 
-        public FaultsMonitoringPage()
+        public SuspendedFaultsPage()
         {
-            expectedCaption = "FAULTY LIST";
+            expectedCaption = "SUSPENDED LIST";
         }
 
         #region WebElements
@@ -28,21 +28,18 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @"#unitReassignBusyButton")]
         protected IWebElement btnReassign { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @"#unitSuspendFaultsBusyButton")]
-        protected IWebElement btnSuspendFaults { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#unitResolveFaultsBusyButton")]
-        protected IWebElement btnResolveFaults { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitResumeFaultsBusyButton")]
+        protected IWebElement btnResumeFaults { get; set; }
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var loginPage = GetLoginPage();
-            var tycoPage = loginPage.Login();
-            var panelsPage = tycoPage.Panels();
-            var faultsMonitoring = panelsPage.FaultsMonitoring();
+            var LoginPage = GetLoginPage();
+            var tycoPage = LoginPage.Login();
+            var PanelsPage = tycoPage.Panels();
+            PanelsPage.SuspendedFaults();
         }
 
         #endregion
@@ -72,19 +69,19 @@ namespace Demo.TestModel.PageDeclarations
             #endregion
 
             VerifyElementVisible("btnReassign", btnReassign);
-            VerifyElementVisible("btnSuspendFaults", btnSuspendFaults);
-            VerifyElementVisible("btnResolveFaults", btnResolveFaults);
+            VerifyElementVisible("btnResumeFaults", btnResumeFaults);
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
 
         public override void WaitLoadPage()
         {
-            Wait.UntilVisible(btnSuspendFaults, 20000);
+            Wait.UntilVisible(btnResumeFaults, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
-            if (this.ItIsYou())
+            if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
             }
         }
     }
 }
-

@@ -13,20 +13,25 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
+using Demo.TestModel;
 
-namespace Demo.TestModel.PageDeclarations.System
+namespace Demo.TestModel.PageDeclarations
 {
-    public class RemoteInspectionValuesPage : SearchFilterPage
+    public class EditUnitPage : AddEditBasePage
     {
-        public RemoteInspectionValuesPage()
+
+        public EditUnitPage()
         {
-            expectedCaption = "REMOTE INSPECTION VALUES";
+            expectedCaption = "EDIT UNIT";
         }
 
-        #region WebElements
+        #region WebElements        
 
-        [FindsBy(How = How.CssSelector, Using = @"#systemRemoteInspectionOptionsBusyButton")]
-        protected IWebElement btnSaveChangesRemoteInspectionOptions { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitsAllEditBusyButtonTop")]
+        protected IWebElement btnSaveChangesEditUnitTop { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#unitsAllEditBusyButtonBottom")]
+        protected IWebElement btnSaveChangesEditUnitBottom { get; set; }
 
         #endregion
 
@@ -35,8 +40,9 @@ namespace Demo.TestModel.PageDeclarations.System
         {
             var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();
-            var systemPage = tycoPage.System();
-            systemPage.RemoteInspectionValues();
+            var panelsPage = tycoPage.Panels();
+            var panelGeneralPage = panelsPage.PanelIDClick();
+            panelGeneralPage.EditPanelClick();
         }
 
         #endregion
@@ -56,22 +62,25 @@ namespace Demo.TestModel.PageDeclarations.System
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
 
-            #region Search and Filters
-            VerifyElementVisible("blockFilters", blockFilters);
-            VerifyElementVisible("blockSearch", blockSearch);
-            #endregion
-
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("btnSaveChangesRemoteInspectionOptions", btnSaveChangesRemoteInspectionOptions);
-
+            #region Add Edit Page locators
+            VerifyElementVisible("labelStayOnPage", labelStayOnPage);
+            VerifyElementVisible("checkboxStayOnPageTop", checkboxStayOnPageTop);
+            VerifyElementVisible("checkboxStayOnPageBottom", checkboxStayOnPageBottom);
+            VerifyElementVisible("btnSaveChangesTop", btnSaveChangesEditUnitTop);
+            VerifyElementVisible("btnSaveChangesBottom", btnSaveChangesEditUnitBottom);
+            VerifyElementVisible("btnDiscardChanges", btnDiscardChanges);
+            VerifyElementVisible("addEditGrid", addEditGrid);
+            VerifyElementVisible("pagePathNextToCaption", pagePathNextToCaption);
+            #endregion
         }
 
         public override void WaitLoadPage()
         {
-            Wait.UntilVisible(btnSaveChangesRemoteInspectionOptions, 20000);
+            Wait.UntilVisible(btnSaveChangesEditUnitTop, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
             if (!this.ItIsYou())
             {
@@ -80,4 +89,5 @@ namespace Demo.TestModel.PageDeclarations.System
         }
     }
 }
+
 

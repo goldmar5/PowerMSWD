@@ -25,15 +25,24 @@ namespace Demo.TestModel.PageDeclarations.System
 
         #region WebElements
 
+        [FindsBy(How = How.CssSelector, Using = @".add")]
+        protected IWebElement btnAddRole { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#roleRemoveBusyButton")]
+        protected IWebElement btnRemoveRole { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".gridCellLink")]
+        protected IWebElement linkEditRole { get; set; }
+
         #endregion
 
         #region Invoke()
         public override void Invoke()
         {
-            //var loginPage = GetLoginPage();
-            //var tycoPage = loginPage.Login();
-            //var systemPage = tycoPage.System();
-            //var usersPage = systemPage.Users();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var systemPage = tycoPage.System();
+            systemPage.UserRoles();
         }
 
         #endregion
@@ -61,6 +70,45 @@ namespace Demo.TestModel.PageDeclarations.System
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
+
+            VerifyElementVisible("btnAddRole", btnAddRole);
+            VerifyElementVisible("btnRemoveRole", btnRemoveRole);
+            VerifyElementVisible("linkEditRole", linkEditRole);
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(btnAddRole, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
+        }
+
+        public AddUserRolePage AddRoleClick()
+        {
+            btnAddRole.Click();
+            AddUserRolePage AddUserRolePage = new AddUserRolePage();
+            AddUserRolePage.WaitLoadPage();
+            return AddUserRolePage;
+        }
+
+        public void RemoveRoleClick()
+        {
+            Wait.UntilVisible(btnRemoveRole, 20000);
+            btnRemoveRole.Click();
+        }
+
+        public EditUserRolePage EditRoleClick()
+        {
+            Wait.UntilVisible(linkEditRole, 20000);
+            linkEditRole.Click();
+            EditUserRolePage EditUserRolePage = new EditUserRolePage();
+            EditUserRolePage.WaitLoadPage();
+            return EditUserRolePage;
         }
     }
 }

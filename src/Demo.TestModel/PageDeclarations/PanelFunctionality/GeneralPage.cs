@@ -16,45 +16,17 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class PanelGeneralPage : GeneralHeaderPage
+    public class GeneralPage : PanelGeneralFunctionalityPage
     {
+        public GeneralPage()
+        {
+            expectedUnitTitle = "PANEL ";
+        }
+
         #region WebElements
 
-        #region Panel General locators
-
-        [FindsBy(How = How.CssSelector, Using = @"#unitRefreshBusyButton")]
-        protected IWebElement btnRefreshPanel { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".menu .btn>span>b")]
-        protected IWebElement btnEditPanel { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#unitRemoveBusyButton")]
-        protected IWebElement btnRemovePanel { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".txt")]
-        protected IWebElement linkStatus { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#unitMaintenanceStatus")]
-        protected IWebElement labelOnlineStatus { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".unitTitle")]
-        protected IWebElement labelUnitTitle { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#quickUnitNavigation")]
-        protected IWebElement blockUnitNavigation { get; set; }
-
-        //.unitGeneralMenuGroup:nth-of-type(1) a[href*="general"]
-        //.unitGeneralMenuGroup:nth-of-type(1) a[href*="services"]
-        //.unitGeneralMenuGroup:nth-of-type(1) a[href*="location"]
-        //.unitGeneralMenuGroup:nth-of-type(2) a[href*="diagnostic"]
-        //.unitGeneralMenuGroup:nth-of-type(2) a[href*="remoteinspection"]
-        //.unitGeneralMenuGroup:nth-of-type(2) a[href*="pmaxstate"]
-        //.unitGeneralMenuGroup:nth-of-type(2) a[href*="pmaxconfig"]
-        //.unitGeneralMenuGroup:nth-of-type(2) a[href*="locations"]
-        //.unitGeneralMenuGroup:nth-of-type(3) a[href*="pmaxlog/standard"]
-        //.unitGeneralMenuGroup:nth-of-type(3) a[href*="pmaxlog/legacy"]
- 
-        #endregion
+        [FindsBy(How = How.CssSelector, Using = @"#unitgeneralform td label")]
+        protected IWebElement labelAllInfoLabels { get; set; }
 
         #endregion
 
@@ -63,11 +35,8 @@ namespace Demo.TestModel.PageDeclarations
         {
             var LoginPage = new LoginPage();
             var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
             var PanelsPage = tycoPage.Panels();
-            PanelsPage.WaitLoadPage();
             PanelsPage.Search(Config.panelID);
-
         }
 
         #endregion
@@ -87,19 +56,42 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
 
-            #region General Header locators
+            #region Panel Functionality locators
+            VerifyElementVisible("labelUnitTitle", labelUnitTitle);
             VerifyElementVisible("btnRefreshPanel", btnRefreshPanel);
             VerifyElementVisible("btnEditPanel", btnEditPanel);
             VerifyElementVisible("btnRemovePanel", btnRemovePanel);
             VerifyElementVisible("linkStatus", linkStatus);
             VerifyElementVisible("labelOnlineStatus", labelOnlineStatus);
-            VerifyElementVisible("labelUnitTitle", labelUnitTitle);
             VerifyElementVisible("blockUnitNavigation", blockUnitNavigation);
+            VerifyElementVisible("linkGeneral", linkGeneral);
+            VerifyElementVisible("linkServices", linkServices);
+            VerifyElementVisible("linkLocation", linkLocation);
+            VerifyElementVisible("linkDiagnostics", linkDiagnostics);
+            VerifyElementVisible("linkRemoteInspections", linkRemoteInspections);
+            VerifyElementVisible("linkSetState", linkSetState);
+            VerifyElementVisible("linkSetGetConfiguration", linkSetGetConfiguration);
+            VerifyElementVisible("linkZonesCustomization", linkZonesCustomization);
+            VerifyElementVisible("linkStandardLog", linkStandardLog);
+            VerifyElementVisible("linkLegacyLog", linkLegacyLog);
             #endregion
 
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("labelUnitTitle", labelUnitTitle);
+            VerifyElementVisible("labelAllInfoLabels", labelAllInfoLabels);
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(labelAllInfoLabels, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedUnitTitle + ", Current: " + CurrentUnitTitle());
+            }
         }
     }
 }

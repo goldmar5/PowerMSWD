@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 #endregion
 #region Usings - SWD
 using Swd.Core;
@@ -17,7 +18,8 @@ using OpenQA.Selenium;
 namespace Demo.TestModel.PageDeclarations
 {
     public class LoginPage : BasePage
-    {
+    {      
+
         #region WebElements
 
         [FindsBy(How = How.CssSelector, Using = @".loginContent")]
@@ -37,7 +39,8 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @"#loginform .link")]
         protected IWebElement linkForgot { get; set; }
 
-        
+        [FindsBy(How = How.CssSelector, Using = @".messageContainer.errorMessage")]
+        protected IWebElement labelInvalidEmailPass { get; set; }
 
         #endregion
 
@@ -81,6 +84,12 @@ namespace Demo.TestModel.PageDeclarations
             txtLogin.SendKeys(Config.applicationUserLogin);
             txtPassword.SendKeys(Config.applicationUserPassword);
             buttonLogIn.Click();
+            for (int i = 0; i < 50; i++)
+            {
+                if (labelInvalidEmailPass.IsDisplayedSafe())
+                    throw new ApplicationException("Invalid Email or Password");
+                Thread.Sleep(100);
+            }            
             var logoTycoPage = new LogoTycoPage();
             logoTycoPage.WaitLoadPage();
             return logoTycoPage;

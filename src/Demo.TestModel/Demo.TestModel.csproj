@@ -49,20 +49,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PageDeclarations\AddEditPages\AddEditBasePage.cs" />
     <Compile Include="GeneralHeaderPage.cs" />
     <Compile Include="BasePage.cs" />
-    <Compile Include="InfoPanelPage.cs" />
     <Compile Include="MyPages.cs" />
-    <Compile Include="PageDeclarations\DiagnosticsPage.cs" />
+    <Compile Include="PageDeclarations\AddEditPages\AddUnitPage.cs" />
+    <Compile Include="PageDeclarations\AddEditPages\AddUserPage.cs" />
+    <Compile Include="PageDeclarations\AddEditPages\AddUserRolePage.cs" />
+    <Compile Include="PageDeclarations\AddEditPages\EditUnitPage.cs" />
+    <Compile Include="PageDeclarations\AddEditPages\EditUserPage.cs" />
+    <Compile Include="PageDeclarations\AddEditPages\EditUserRolePage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\DiagnosticsPage.cs" />
     <Compile Include="PageDeclarations\EventsPage.cs" />
-    <Compile Include="PageDeclarations\FaultsMonitoringPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\LegacyLogPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\LocationPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\PanelGeneralFunctionalityPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\RemoteInspectionsPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\ServicesPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\SetGetConfigurationPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\SetStatePage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\StandardLogPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\ZonesCustomizationPage.cs" />
+    <Compile Include="PageDeclarations\Panels\FaultsMonitoringPage.cs" />
     <Compile Include="PageDeclarations\GroupPage.cs" />
     <Compile Include="PageDeclarations\LoginPage.cs" />
     <Compile Include="PageDeclarations\LogoutMenuPage.cs" />
-    <Compile Include="PageDeclarations\PanelGeneralPage.cs" />
+    <Compile Include="PageDeclarations\PanelFunctionality\GeneralPage.cs" />
     <Compile Include="PageDeclarations\ProcessesPage.cs" />
-    <Compile Include="PageDeclarations\RemoteInspectionPage.cs" />
-    <Compile Include="PageDeclarations\SuspendedFaultsPage.cs" />
+    <Compile Include="PageDeclarations\Panels\RemoteInspectionPage.cs" />
+    <Compile Include="PageDeclarations\Panels\SuspendedFaultsPage.cs" />
     <Compile Include="PageDeclarations\SystemPage.cs" />
     <Compile Include="PageDeclarations\LogoTycoPage.cs" />
     <Compile Include="PageDeclarations\PanelsPage.cs" />
@@ -74,7 +89,7 @@
     <Compile Include="PageDeclarations\System\UserActionLogPage.cs" />
     <Compile Include="PageDeclarations\System\UserRolesPage.cs" />
     <Compile Include="PageDeclarations\System\UsersPage.cs" />
-    <Compile Include="PageDeclarations\UserSettingsPage.cs" />
+    <Compile Include="PageDeclarations\AddEditPages\UserSettingsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchFilterPage.cs" />
   </ItemGroup>

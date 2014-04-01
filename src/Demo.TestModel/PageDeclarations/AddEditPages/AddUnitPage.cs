@@ -15,31 +15,34 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class SuspendedFaultsPage : SearchFilterPage
+    public class AddUnitPage : AddEditBasePage
     {
 
-        public SuspendedFaultsPage()
+        public AddUnitPage()
         {
-            expectedCaption = "SUSPENDED LIST";
+            expectedCaption = "ADD UNIT";
         }
 
-        #region WebElements
+        #region WebElements        
 
-        [FindsBy(How = How.CssSelector, Using = @"#unitReassignBusyButton")]
-        protected IWebElement btnReassign { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitsAllAddBusyButtonTop")]
+        protected IWebElement btnSaveChangesAddUnitTop { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @"#unitResumeFaultsBusyButton")]
-        protected IWebElement btnResumeFaults { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitsAllAddBusyButtonBottom")]
+        protected IWebElement btnSaveChangesAddUnitBottom { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#unt_serial")]
+        protected IWebElement txtPanelID { get; set; }
 
         #endregion
 
-        #region Invoke() and IsDisplayed()
+        #region Invoke()
         public override void Invoke()
         {
             var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();
-            var PanelsPage = tycoPage.Panels();
-            var SuspendedFaults = PanelsPage.SuspendedFaults();
+            var panelsPage = tycoPage.Panels();
+            panelsPage.AddUnitClick();
         }
 
         #endregion
@@ -59,27 +62,33 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
 
-            #region Search and Filters
-            VerifyElementVisible("blockFilters", blockFilters);
-            VerifyElementVisible("blockSearch", blockSearch);
-            #endregion
-
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("btnReassign", btnReassign);
-            VerifyElementVisible("btnResumeFaults", btnResumeFaults);
+            #region Add Edit Page locators
+            VerifyElementVisible("labelStayOnPage", labelStayOnPage);
+            VerifyElementVisible("checkboxStayOnPageTop", checkboxStayOnPageTop);
+            VerifyElementVisible("checkboxStayOnPageBottom", checkboxStayOnPageBottom);
+            VerifyElementVisible("btnSaveChangesTop", btnSaveChangesAddUnitTop);
+            VerifyElementVisible("btnSaveChangesBottom", btnSaveChangesAddUnitBottom);
+            VerifyElementVisible("btnDiscardChanges", btnDiscardChanges);
+            VerifyElementVisible("addEditGrid", addEditGrid);
+            VerifyElementVisible("pagePathNextToCaption", pagePathNextToCaption);
+            #endregion            
+
+            VerifyElementVisible("txtPanelID", txtPanelID);
         }
 
         public override void WaitLoadPage()
         {
-            Wait.UntilVisible(btnResumeFaults, 20000);
+            Wait.UntilVisible(btnSaveChangesAddUnitTop, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
-            if (this.ItIsYou())
+            if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
             }
         }
     }
 }
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Demo.TestModel.PageDeclarations;
+using Demo.TestModel.PageDeclarations.System;
 
 namespace Demo.TestModel
 {
@@ -56,9 +57,29 @@ namespace Demo.TestModel
         public static EventsPage EventsPage { get { return GetPage<EventsPage>(); } }
         public static ProcessesPage ProcessesPage { get { return GetPage<ProcessesPage>(); } }
         public static SystemPage SystemPage { get { return GetPage<SystemPage>(); } }
-        public static UserSettingsPage UserSettingsPage { get { return GetPage<UserSettingsPage>(); } }
+
+        //================= PANELS ====================//
         public static FaultsMonitoringPage FaultsMonitoringPage { get { return GetPage<FaultsMonitoringPage>(); } }
         public static SuspendedFaultsPage SuspendedFaultsPage { get { return GetPage<SuspendedFaultsPage>(); } }
         public static RemoteInspectionPage RemoteInspectionPage { get { return GetPage<RemoteInspectionPage>(); } }
+
+        //================= SYSTEM ====================//
+        public static UsersPage UsersPage { get { return GetPage<UsersPage>(); } }
+        public static UserRolesPage UserRolesPage { get { return GetPage<UserRolesPage>(); } }
+        public static UserActionLogPage UserActionLogPage { get { return GetPage<UserActionLogPage>(); } }
+        public static PowerMaxPackagesPage PowerMaxPackagesPage { get { return GetPage<PowerMaxPackagesPage>(); } }
+        public static PowerLinkPackagesPage PowerLinkPackagesPage { get { return GetPage<PowerLinkPackagesPage>(); } }
+        public static ManageBaseConfigurationsPage ManageBaseConfigurationsPage { get { return GetPage<ManageBaseConfigurationsPage>(); } }
+        public static CentralStationsPage CentralStationsPage { get { return GetPage<CentralStationsPage>(); } }
+        public static RemoteInspectionValuesPage RemoteInspectionValuesPage { get { return GetPage<RemoteInspectionValuesPage>(); } }
+
+        //================= ADD EDIT PAGES ====================//
+        public static AddUnitPage AddUnitPage { get { return GetPage<AddUnitPage>(); } }
+        public static EditUnitPage EditUnitPage { get { return GetPage<EditUnitPage>(); } }
+        public static AddUserPage AddUserPage { get { return GetPage<AddUserPage>(); } }
+        public static EditUserPage EditUserPage { get { return GetPage<EditUserPage>(); } }
+        public static AddUserRolePage AddUserRolePage { get { return GetPage<AddUserRolePage>(); } }
+        public static EditUserRolePage EditUserRolePage { get { return GetPage<EditUserRolePage>(); } }
+        public static UserSettingsPage UserSettingsPage { get { return GetPage<UserSettingsPage>(); } }
     }
 }

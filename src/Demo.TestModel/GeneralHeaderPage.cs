@@ -14,6 +14,7 @@ namespace Demo.TestModel
     public abstract class GeneralHeaderPage : BasePage
     {
         public string expectedCaption;
+        public string expectedUnitTitle;
 
         #region WebElements
 
@@ -67,6 +68,9 @@ namespace Demo.TestModel
         [FindsBy(How = How.CssSelector, Using = @".caption")]
         protected IWebElement labelCaption { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = @".unitTitle")]
+        protected IWebElement labelUnitTitle { get; set; }
+
         #endregion
 
         #endregion      
@@ -76,17 +80,24 @@ namespace Demo.TestModel
             return labelCaption.GetElementText();
         }
 
+        public string CurrentUnitTitle()
+        {
+            return labelUnitTitle.GetElementText();
+        }
+
         public virtual bool ItIsYou()
         {
             if (CurrentCaption() == expectedCaption)
+                return true;
+            if (CurrentUnitTitle().Contains(expectedUnitTitle))
                 return true;
             return false;
         }
 
         public virtual void WaitLoadPage()
         {
-            Wait.UntilDisapear(mainModalDialog, 20000);
             Wait.UntilVisible(labelCaption, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
             if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());

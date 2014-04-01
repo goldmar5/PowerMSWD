@@ -28,7 +28,7 @@ namespace Demo.TestModel.PageDeclarations
         public override void Invoke()
         {
             var LoginPage = GetLoginPage();
-            var tycoPage = LoginPage.Login();
+            LoginPage.Login();
         }
                 
         #endregion

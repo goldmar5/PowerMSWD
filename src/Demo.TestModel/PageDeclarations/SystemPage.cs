@@ -57,7 +57,7 @@ namespace Demo.TestModel.PageDeclarations
         {
             var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();
-            var SystemPage = tycoPage.System();
+            tycoPage.System();
         }
         
         #endregion

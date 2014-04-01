@@ -15,17 +15,24 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class LogoutMenuPage : GeneralHeaderPage
+    public class RemoteInspectionPage : SearchFilterPage
     {
-        public LogoutMenuPage()
+
+        public RemoteInspectionPage()
         {
-            expectedCaption = "LOGOUT MENU";
+            expectedCaption = "REMOTE INSPECTION LIST";
         }
 
         #region WebElements
 
-        [FindsBy(How = How.CssSelector, Using = @"#logout_alink")]
-        protected IWebElement linkFullLogout { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionScheduleBusyButton")]
+        protected IWebElement btnSchedule { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionInitiateBusyButton")]
+        protected IWebElement btnInitiateInspection { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".unitRemoteInspectionFilter")]
+        protected IWebElement blockRemoteInspectionFilter { get; set; }
 
         #endregion
 
@@ -34,7 +41,8 @@ namespace Demo.TestModel.PageDeclarations
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
-            tycoPage.Logout();
+            var panelsPage = tycoPage.Panels();
+            panelsPage.RemoteInspection();
         }
 
         #endregion
@@ -54,18 +62,30 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
 
+            #region Search and Filters
+            VerifyElementVisible("blockFilters", blockFilters);
+            VerifyElementVisible("blockSearch", blockSearch);
+            #endregion
+
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("linkFullLogout", linkFullLogout);
+            VerifyElementVisible("btnSchedule", btnSchedule);
+            VerifyElementVisible("btnInitiateInspection", btnInitiateInspection);
+            VerifyElementVisible("blockRemoteInspectionFilter", blockRemoteInspectionFilter);
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
 
-        public void FullLogout()
+        public override void WaitLoadPage()
         {
-            linkFullLogout.Click();
-            LoginPage LoginPage = new LoginPage();
-            LoginPage.WaitLoadPage();
+            Wait.UntilVisible(btnSchedule, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }

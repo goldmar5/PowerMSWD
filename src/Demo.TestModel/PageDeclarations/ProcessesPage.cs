@@ -35,7 +35,7 @@ namespace Demo.TestModel.PageDeclarations
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
-            var processesPage = tycoPage.Processes();
+            tycoPage.Processes();
         }
 
         #endregion
@@ -65,6 +65,8 @@ namespace Demo.TestModel.PageDeclarations
             #endregion
 
             VerifyElementVisible("btnStop", btnStop);
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
     }
 }

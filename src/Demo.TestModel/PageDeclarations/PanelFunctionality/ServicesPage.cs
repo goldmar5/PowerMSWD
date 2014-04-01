@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Demo.TestModel.PageDeclarations
+namespace Demo.TestModel.PageDeclarations.PanelFunctionality
 {
-    class DiagnosticsPage : InfoPanelPage
+    class ServicesPage
     {
     }
 }

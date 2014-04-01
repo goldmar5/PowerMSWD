@@ -37,16 +37,15 @@ namespace Demo.TestModel
 
         #endregion
 
+        [FindsBy(How = How.CssSelector, Using = @".block")]
+        protected IWebElement gridBlockBase { get; set; }
+
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.WaitLoadPage();
-            var ProcessesPage = tycoPage.Processes();
-            ProcessesPage.WaitLoadPage();
+            
         }
 
         #endregion
@@ -74,6 +73,8 @@ namespace Demo.TestModel
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
     }
 }

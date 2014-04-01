@@ -12,19 +12,22 @@ namespace Demo.TestProject.Tests
     public class MainTests
     {
         [TestMethod]
-        public void LogoutTest()
+        public void GetLoginPageAfterLogout()
         {
-            var LoginPage = new LoginPage();
-            var loginPage = LoginPage.GetLoginPage();
+            var loginPage = BasePage.GetLoginPage();
             var tycoPage = loginPage.Login();
             var logoutPage = tycoPage.Logout();
             logoutPage.FullLogout();
         }
 
         [TestMethod]
-        public void SomeTest()
+        public void GetToasterMessageTest()
         {
-            //Empty
+            var loginPage = BasePage.GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var panelsPage = tycoPage.Panels();
+            var generalPanelPage = panelsPage.PanelIDClick();
+            generalPanelPage.RefreshPanelClick();
         }
 
         [TestMethod]

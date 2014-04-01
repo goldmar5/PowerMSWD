@@ -25,6 +25,18 @@ namespace Demo.TestModel.PageDeclarations.System
 
         #region WebElements
 
+        [FindsBy(How = How.CssSelector, Using = @".add")]
+        protected IWebElement btnAddUser { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#userRemoveBusyButton")]
+        protected IWebElement btnRemoveUser { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#userSuspendBusyButton")]
+        protected IWebElement btnToggleSuspendUser { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".gridCellLink")]
+        protected IWebElement linkEditUser { get; set; }
+
         #endregion
 
         #region Invoke()
@@ -33,8 +45,7 @@ namespace Demo.TestModel.PageDeclarations.System
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
             var systemPage = tycoPage.System();
-            var usersPage = systemPage.Users();
-
+            systemPage.Users();
         }
 
         #endregion
@@ -62,6 +73,40 @@ namespace Demo.TestModel.PageDeclarations.System
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
+
+            VerifyElementVisible("btnAddUser", btnAddUser);
+            VerifyElementVisible("btnRemoveUser", btnRemoveUser);
+            VerifyElementVisible("btnToggleSuspendUser", btnToggleSuspendUser);
+            VerifyElementVisible("linkEditUser", linkEditUser);
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(btnAddUser, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
+        }
+
+        public AddUserPage AddUserClick()
+        {
+            btnAddUser.Click();            
+            AddUserPage AddUserPage = new AddUserPage();
+            AddUserPage.WaitLoadPage();
+            return AddUserPage;
+        }
+
+        public EditUserPage EditUserClick()
+        {
+            Wait.UntilVisible(linkEditUser, 20000);
+            linkEditUser.Click();
+            EditUserPage EditUserPage = new EditUserPage();
+            EditUserPage.WaitLoadPage();
+            return EditUserPage;
         }
     }
 }

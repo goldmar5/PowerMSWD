@@ -13,29 +13,15 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-namespace Demo.TestModel.PageDeclarations
+using Demo.TestModel.PageDeclarations;
+
+namespace Demo.TestModel
 {
-    public class UserSettingsPage : GeneralHeaderPage
+    public class AddEditBasePage : GeneralHeaderPage
     {
-
-        public UserSettingsPage()
-        {
-            expectedCaption = "SETTINGS MENU";
-        }
-
         #region WebElements
 
-        [FindsBy(How = How.CssSelector, Using = @"#usr_phone")]
-        protected IWebElement txtUsr_phone { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#coy_id")]
-        protected IWebElement txtCountry { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#newpassword")]
-        protected IWebElement txtPassword { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#confirmpassword")]
-        protected IWebElement txtConfirmPassword { get; set; }
+        #region Add Edit locators
 
         [FindsBy(How = How.CssSelector, Using = @"#text")]
         protected IWebElement labelStayOnPage { get; set; }
@@ -46,29 +32,23 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @"#stayOnPageBottom")]
         protected IWebElement checkboxStayOnPageBottom { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @"#settingsMenuBusyButtonTop")]
-        protected IWebElement btnSaveChangesTop { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#settingsMenuBusyButtonBottom")]
-        protected IWebElement btnSaveChangesBottom { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = @"[class*=subTitle] .btnSimple")]
         protected IWebElement btnDiscardChanges { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".label.required")]
-        protected IWebElement labelPhone { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @".scroll")]
+        protected IWebElement addEditGrid { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @"#coy_id_label")]
-        protected IWebElement labelCountry { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @".breadCrumbs")]
+        protected IWebElement pagePathNextToCaption { get; set; }
+
+        #endregion
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = GetLoginPage();
-            var tycoPage = LoginPage.Login();
-            var UserSettingsPage = tycoPage.Settings();
+
         }
 
         #endregion
@@ -92,18 +72,15 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("txtUsr_phone", txtUsr_phone);
-            VerifyElementVisible("txtCountry", txtCountry);
-            VerifyElementVisible("txtPassword", txtPassword);
-            VerifyElementVisible("txtConfirmPassword", txtConfirmPassword);
+            #region Add Edit Page locators
             VerifyElementVisible("labelStayOnPage", labelStayOnPage);
             VerifyElementVisible("checkboxStayOnPageTop", checkboxStayOnPageTop);
             VerifyElementVisible("checkboxStayOnPageBottom", checkboxStayOnPageBottom);
-            VerifyElementVisible("btnSaveChangesTop", btnSaveChangesTop);
-            VerifyElementVisible("btnSaveChangesBottom", btnSaveChangesBottom);
             VerifyElementVisible("btnDiscardChanges", btnDiscardChanges);
-            VerifyElementVisible("labelPhone", labelPhone);
-            VerifyElementVisible("labelCountry", labelCountry);
+            VerifyElementVisible("addEditGrid", addEditGrid);
+            VerifyElementVisible("pagePathNextToCaption", pagePathNextToCaption);
+            #endregion
         }
     }
 }
+

@@ -32,7 +32,7 @@ namespace Demo.TestModel.PageDeclarations
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
-            var EventsPage = tycoPage.Events();
+            tycoPage.Events();
         }
 
         #endregion
@@ -60,6 +60,8 @@ namespace Demo.TestModel.PageDeclarations
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
     }
 }

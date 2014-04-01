@@ -15,34 +15,32 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.PageDeclarations
 {
-    public class RemoteInspectionPage : SearchFilterPage
+    public class EditUserPage : AddEditBasePage
     {
 
-        public RemoteInspectionPage()
+        public EditUserPage()
         {
-            expectedCaption = "REMOTE INSPECTION LIST";
+            expectedCaption = "EDIT USER";
         }
 
-        #region WebElements
+        #region WebElements        
 
-        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionScheduleBusyButton")]
-        protected IWebElement btnSchedule { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#userEditBusyButtonTop")]
+        protected IWebElement btnSaveChangesEditUserTop { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionInitiateBusyButton")]
-        protected IWebElement btnInitiateInspection { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".unitRemoteInspectionFilter")]
-        protected IWebElement blockRemoteInspectionFilter { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#userEditBusyButtonBottom")]
+        protected IWebElement btnSaveChangesEditUserBottom { get; set; }
 
         #endregion
 
-        #region Invoke() and IsDisplayed()
+        #region Invoke()
         public override void Invoke()
         {
-            var loginPage = GetLoginPage();
-            var tycoPage = loginPage.Login();
-            var panelsPage = tycoPage.Panels();
-            var remoteInspection = panelsPage.RemoteInspection();
+            var LoginPage = GetLoginPage();
+            var tycoPage = LoginPage.Login();
+            var systemPage = tycoPage.System();
+            var usersPage = systemPage.Users();
+            usersPage.EditUserClick();
         }
 
         #endregion
@@ -62,28 +60,32 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
 
-            #region Search and Filters
-            VerifyElementVisible("blockFilters", blockFilters);
-            VerifyElementVisible("blockSearch", blockSearch);
-            #endregion
-
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("btnSchedule", btnSchedule);
-            VerifyElementVisible("btnInitiateInspection", btnInitiateInspection);
-            VerifyElementVisible("blockRemoteInspectionFilter", blockRemoteInspectionFilter);
+            #region Add Edit Page locators
+            VerifyElementVisible("labelStayOnPage", labelStayOnPage);
+            VerifyElementVisible("checkboxStayOnPageTop", checkboxStayOnPageTop);
+            VerifyElementVisible("checkboxStayOnPageBottom", checkboxStayOnPageBottom);
+            VerifyElementVisible("btnSaveChangesTop", btnSaveChangesEditUserTop);
+            VerifyElementVisible("btnSaveChangesBottom", btnSaveChangesEditUserBottom);
+            VerifyElementVisible("btnDiscardChanges", btnDiscardChanges);
+            VerifyElementVisible("addEditGrid", addEditGrid);
+            VerifyElementVisible("pagePathNextToCaption", pagePathNextToCaption);
+            #endregion
         }
 
         public override void WaitLoadPage()
         {
-            Wait.UntilVisible(btnSchedule, 20000);
+            Wait.UntilVisible(btnSaveChangesEditUserTop, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
-            if (this.ItIsYou())
+            if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
             }
         }
     }
 }
+
+

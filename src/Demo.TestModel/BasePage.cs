@@ -34,12 +34,12 @@ namespace Demo.TestModel
             // Does nothing at the moment
         }
 
-        public LoginPage GetLoginPage()
+        public static LoginPage GetLoginPage()
         {
             var loginPage = new LoginPage();
             SwdBrowser.Driver.Url = Config.applicationMainUrl;
             loginPage.WaitLoadPage();
             return loginPage;
-        }
+        } 
     }
 }

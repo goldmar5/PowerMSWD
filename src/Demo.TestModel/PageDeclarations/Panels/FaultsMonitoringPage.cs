@@ -13,19 +13,27 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
+
 namespace Demo.TestModel.PageDeclarations
 {
-    public class LogoutMenuPage : GeneralHeaderPage
+    public class FaultsMonitoringPage : SearchFilterPage
     {
-        public LogoutMenuPage()
+
+        public FaultsMonitoringPage()
         {
-            expectedCaption = "LOGOUT MENU";
+            expectedCaption = "FAULTY LIST";
         }
 
         #region WebElements
 
-        [FindsBy(How = How.CssSelector, Using = @"#logout_alink")]
-        protected IWebElement linkFullLogout { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitReassignBusyButton")]
+        protected IWebElement btnReassign { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#unitSuspendFaultsBusyButton")]
+        protected IWebElement btnSuspendFaults { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#unitResolveFaultsBusyButton")]
+        protected IWebElement btnResolveFaults { get; set; }
 
         #endregion
 
@@ -34,7 +42,8 @@ namespace Demo.TestModel.PageDeclarations
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
-            tycoPage.Logout();
+            var panelsPage = tycoPage.Panels();
+            panelsPage.FaultsMonitoring();
         }
 
         #endregion
@@ -54,18 +63,31 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
 
+            #region Search and Filters
+            VerifyElementVisible("blockFilters", blockFilters);
+            VerifyElementVisible("blockSearch", blockSearch);
+            #endregion
+
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("linkFullLogout", linkFullLogout);
+            VerifyElementVisible("btnReassign", btnReassign);
+            VerifyElementVisible("btnSuspendFaults", btnSuspendFaults);
+            VerifyElementVisible("btnResolveFaults", btnResolveFaults);
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
 
-        public void FullLogout()
+        public override void WaitLoadPage()
         {
-            linkFullLogout.Click();
-            LoginPage LoginPage = new LoginPage();
-            LoginPage.WaitLoadPage();
+            Wait.UntilVisible(btnSuspendFaults, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }
+

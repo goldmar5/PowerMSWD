@@ -13,6 +13,8 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
+using Demo.TestModel;
+
 namespace Demo.TestModel.PageDeclarations
 {
     public class PanelsPage : SearchFilterPage
@@ -45,6 +47,9 @@ namespace Demo.TestModel.PageDeclarations
         [FindsBy(How = How.CssSelector, Using = @"div.section + span")]
         protected IWebElement ddbActions { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = @".gridCellLink")]
+        protected IWebElement linkPanelID { get; set; }
+
         #endregion
 
         #region Invoke() and IsDisplayed()
@@ -52,7 +57,7 @@ namespace Demo.TestModel.PageDeclarations
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
-            var PanelsPage = tycoPage.Panels();
+            tycoPage.Panels();
         }
 
         #endregion
@@ -82,7 +87,9 @@ namespace Demo.TestModel.PageDeclarations
             VerifyElementVisible("btnRemoteInspection", btnRemoteInspection);
             VerifyElementVisible("btnAddUnit", btnAddUnit);
             VerifyElementVisible("btnRemoveUnit", btnRemoveUnit);
-            VerifyElementVisible("ddbActions", ddbActions);            
+            VerifyElementVisible("ddbActions", ddbActions);
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
 
         public FaultsMonitoringPage FaultsMonitoring()
@@ -107,6 +114,28 @@ namespace Demo.TestModel.PageDeclarations
             RemoteInspectionPage RemoteInspectionPage = new RemoteInspectionPage();
             RemoteInspectionPage.WaitLoadPage();
             return RemoteInspectionPage;
+        }
+
+        public AddUnitPage AddUnitClick()
+        {
+            btnAddUnit.Click();
+            AddUnitPage AddUnitPage = new AddUnitPage();
+            AddUnitPage.WaitLoadPage();
+            return AddUnitPage;
+        }
+
+        public void RemoveUnitClick()
+        {
+            btnRemoveUnit.Click();
+        }
+
+        public GeneralPage PanelIDClick()
+        {
+            Wait.UntilVisible(linkPanelID, 20000);
+            linkPanelID.Click();
+            GeneralPage PanelGeneralPage = new GeneralPage();
+            PanelGeneralPage.WaitLoadPage();
+            return PanelGeneralPage;
         }
 
         public void Search(string SearchText)

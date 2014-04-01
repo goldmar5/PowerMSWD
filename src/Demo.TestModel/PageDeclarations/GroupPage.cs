@@ -39,7 +39,7 @@ namespace Demo.TestModel.PageDeclarations
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
-            var groupsPage = tycoPage.Groups();
+            tycoPage.Groups();
         }
 
         #endregion
@@ -70,6 +70,8 @@ namespace Demo.TestModel.PageDeclarations
 
             VerifyElementVisible("btnAddGroup", btnAddGroup);
             VerifyElementVisible("btnRemoveGroup", btnRemoveGroup);
+
+            VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
     }
 }
