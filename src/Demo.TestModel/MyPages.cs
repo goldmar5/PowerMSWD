@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Demo.TestModel.PageDeclarations;
-using Demo.TestModel.PageDeclarations.System;
+using Demo.TestModel.IPMPpages;
+using Demo.TestModel.IPMPpages.System;
 
 namespace Demo.TestModel
 {

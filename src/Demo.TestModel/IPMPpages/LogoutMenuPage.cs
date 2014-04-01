@@ -13,39 +13,28 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-using Demo.TestModel.IPMPpages;
-
-namespace Demo.TestModel
+namespace Demo.TestModel.IPMPpages
 {
-    public class SearchFilterPage : GeneralHeaderPage
+    public class LogoutMenuPage : GeneralHeaderPage
     {
+        public LogoutMenuPage()
+        {
+            expectedCaption = "LOGOUT MENU";
+        }
+
         #region WebElements
 
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
-        protected IWebElement txtSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search>a")]
-        protected IWebElement linkSearch { get; set; }
-
-        #endregion
-
-        [FindsBy(How = How.CssSelector, Using = @".block")]
-        protected IWebElement gridBlockBase { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#logout_alink")]
+        protected IWebElement linkFullLogout { get; set; }
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            tycoPage.Logout();
         }
 
         #endregion
@@ -65,16 +54,18 @@ namespace Demo.TestModel
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
 
-            #region Search and Filters
-            VerifyElementVisible("blockFilters", blockFilters);
-            VerifyElementVisible("blockSearch", blockSearch);
-            #endregion
-
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("gridBlockBase", gridBlockBase);
+            VerifyElementVisible("linkFullLogout", linkFullLogout);
+        }
+
+        public void FullLogout()
+        {
+            linkFullLogout.Click();
+            LoginPage LoginPage = new LoginPage();
+            LoginPage.WaitLoadPage();
         }
     }
 }

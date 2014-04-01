@@ -13,39 +13,30 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-using Demo.TestModel.IPMPpages;
 
-namespace Demo.TestModel
+namespace Demo.TestModel.IPMPpages.System
 {
-    public class SearchFilterPage : GeneralHeaderPage
+    public class RemoteInspectionValuesPage : SearchFilterPage
     {
+        public RemoteInspectionValuesPage()
+        {
+            expectedCaption = "REMOTE INSPECTION VALUES";
+        }
+
         #region WebElements
 
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
-        protected IWebElement txtSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search>a")]
-        protected IWebElement linkSearch { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#systemRemoteInspectionOptionsBusyButton")]
+        protected IWebElement btnSaveChangesRemoteInspectionOptions { get; set; }
 
         #endregion
 
-        [FindsBy(How = How.CssSelector, Using = @".block")]
-        protected IWebElement gridBlockBase { get; set; }
-
-        #endregion
-
-        #region Invoke() and IsDisplayed()
+        #region Invoke()
         public override void Invoke()
         {
-            
+            var LoginPage = GetLoginPage();
+            var tycoPage = LoginPage.Login();
+            var systemPage = tycoPage.System();
+            systemPage.RemoteInspectionValues();
         }
 
         #endregion
@@ -74,7 +65,19 @@ namespace Demo.TestModel
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("gridBlockBase", gridBlockBase);
+            VerifyElementVisible("btnSaveChangesRemoteInspectionOptions", btnSaveChangesRemoteInspectionOptions);
+
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(btnSaveChangesRemoteInspectionOptions, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }
+

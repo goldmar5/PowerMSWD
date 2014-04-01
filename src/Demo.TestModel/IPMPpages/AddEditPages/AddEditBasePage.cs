@@ -17,35 +17,38 @@ using Demo.TestModel.IPMPpages;
 
 namespace Demo.TestModel
 {
-    public class SearchFilterPage : GeneralHeaderPage
+    public class AddEditBasePage : GeneralHeaderPage
     {
         #region WebElements
 
-        #region Search and Filters
+        #region Add Edit locators
 
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#text")]
+        protected IWebElement labelStayOnPage { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#stayOnPageTop")]
+        protected IWebElement checkboxStayOnPageTop { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
-        protected IWebElement txtSearch { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#stayOnPageBottom")]
+        protected IWebElement checkboxStayOnPageBottom { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".search>a")]
-        protected IWebElement linkSearch { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"[class*=subTitle] .btnSimple")]
+        protected IWebElement btnDiscardChanges { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".scroll")]
+        protected IWebElement addEditGrid { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".breadCrumbs")]
+        protected IWebElement pagePathNextToCaption { get; set; }
 
         #endregion
-
-        [FindsBy(How = How.CssSelector, Using = @".block")]
-        protected IWebElement gridBlockBase { get; set; }
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            
+
         }
 
         #endregion
@@ -65,16 +68,19 @@ namespace Demo.TestModel
             VerifyElementVisible("linkHelp", linkHelp);
             #endregion
 
-            #region Search and Filters
-            VerifyElementVisible("blockFilters", blockFilters);
-            VerifyElementVisible("blockSearch", blockSearch);
-            #endregion
-
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
-            VerifyElementVisible("gridBlockBase", gridBlockBase);
+            #region Add Edit Page locators
+            VerifyElementVisible("labelStayOnPage", labelStayOnPage);
+            VerifyElementVisible("checkboxStayOnPageTop", checkboxStayOnPageTop);
+            VerifyElementVisible("checkboxStayOnPageBottom", checkboxStayOnPageBottom);
+            VerifyElementVisible("btnDiscardChanges", btnDiscardChanges);
+            VerifyElementVisible("addEditGrid", addEditGrid);
+            VerifyElementVisible("pagePathNextToCaption", pagePathNextToCaption);
+            #endregion
         }
     }
 }
+

@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Demo.TestModel;
 using Swd.Core.Pages;
-using Demo.TestModel.PageDeclarations;
+using Demo.TestModel.IPMPpages;
 using Swd.Core.WebDriver;
 
 namespace Demo.TestProject.Tests

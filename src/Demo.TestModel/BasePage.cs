@@ -6,7 +6,7 @@ using Swd.Core;
 using Swd.Core.Pages;
 using Swd.Core.Configuration;
 using OpenQA.Selenium;
-using Demo.TestModel.PageDeclarations;
+using Demo.TestModel.IPMPpages;
 using OpenQA.Selenium.Support.PageObjects;
 using Swd.Core.WebDriver;
 

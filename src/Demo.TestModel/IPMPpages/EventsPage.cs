@@ -13,39 +13,26 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-using Demo.TestModel.IPMPpages;
-
-namespace Demo.TestModel
+namespace Demo.TestModel.IPMPpages
 {
-    public class SearchFilterPage : GeneralHeaderPage
+    public class EventsPage : SearchFilterPage
     {
+
+        public EventsPage()
+        {
+            expectedCaption = "EVENT LIST";
+        }
+
         #region WebElements
-
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
-        protected IWebElement txtSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search>a")]
-        protected IWebElement linkSearch { get; set; }
-
-        #endregion
-
-        [FindsBy(How = How.CssSelector, Using = @".block")]
-        protected IWebElement gridBlockBase { get; set; }
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            tycoPage.Events();
         }
 
         #endregion

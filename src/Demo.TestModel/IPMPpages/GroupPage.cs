@@ -13,39 +13,33 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-using Demo.TestModel.IPMPpages;
+using Demo.TestModel;
 
-namespace Demo.TestModel
+namespace Demo.TestModel.IPMPpages
 {
-    public class SearchFilterPage : GeneralHeaderPage
+    public class GroupPage : SearchFilterPage
     {
+        public GroupPage()
+        {
+            expectedCaption = "UNIT GROUP LIST";
+        }
+
         #region WebElements
 
-        #region Search and Filters
+        [FindsBy(How = How.CssSelector, Using = @".add")]
+        protected IWebElement btnAddGroup { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
-        protected IWebElement txtSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search>a")]
-        protected IWebElement linkSearch { get; set; }
-
-        #endregion
-
-        [FindsBy(How = How.CssSelector, Using = @".block")]
-        protected IWebElement gridBlockBase { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitRemoveBusyButton")]
+        protected IWebElement btnRemoveGroup { get; set; }
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            tycoPage.Groups();
         }
 
         #endregion
@@ -73,6 +67,9 @@ namespace Demo.TestModel
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("btnAddGroup", btnAddGroup);
+            VerifyElementVisible("btnRemoveGroup", btnRemoveGroup);
 
             VerifyElementVisible("gridBlockBase", gridBlockBase);
         }

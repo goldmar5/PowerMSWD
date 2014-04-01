@@ -13,39 +13,29 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-using Demo.TestModel.IPMPpages;
-
-namespace Demo.TestModel
+namespace Demo.TestModel.IPMPpages
 {
-    public class SearchFilterPage : GeneralHeaderPage
+    public class ProcessesPage : SearchFilterPage
     {
+
+        public ProcessesPage()
+        {
+            expectedCaption = "PROCESS LIST";
+        }
+
         #region WebElements
 
-        #region Search and Filters
-
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
-        protected IWebElement txtSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search>a")]
-        protected IWebElement linkSearch { get; set; }
-
-        #endregion
-
-        [FindsBy(How = How.CssSelector, Using = @".block")]
-        protected IWebElement gridBlockBase { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#processStopBusyButton")]
+        protected IWebElement btnStop { get; set; }
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            tycoPage.Processes();
         }
 
         #endregion
@@ -73,6 +63,8 @@ namespace Demo.TestModel
             #region Caption locator
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
+
+            VerifyElementVisible("btnStop", btnStop);
 
             VerifyElementVisible("gridBlockBase", gridBlockBase);
         }

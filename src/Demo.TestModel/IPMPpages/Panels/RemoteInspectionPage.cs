@@ -13,39 +13,36 @@ using Swd.Core.WebDriver;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
-using Demo.TestModel.IPMPpages;
-
-namespace Demo.TestModel
+namespace Demo.TestModel.IPMPpages
 {
-    public class SearchFilterPage : GeneralHeaderPage
+    public class RemoteInspectionPage : SearchFilterPage
     {
+
+        public RemoteInspectionPage()
+        {
+            expectedCaption = "REMOTE INSPECTION LIST";
+        }
+
         #region WebElements
 
-        #region Search and Filters
+        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionScheduleBusyButton")]
+        protected IWebElement btnSchedule { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".panel")]
-        protected IWebElement blockFilters { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#unitRemoteInspectionInitiateBusyButton")]
+        protected IWebElement btnInitiateInspection { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".search")]
-        protected IWebElement blockSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#searchField")]
-        protected IWebElement txtSearch { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".search>a")]
-        protected IWebElement linkSearch { get; set; }
-
-        #endregion
-
-        [FindsBy(How = How.CssSelector, Using = @".block")]
-        protected IWebElement gridBlockBase { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @".unitRemoteInspectionFilter")]
+        protected IWebElement blockRemoteInspectionFilter { get; set; }
 
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var panelsPage = tycoPage.Panels();
+            panelsPage.RemoteInspection();
         }
 
         #endregion
@@ -74,7 +71,21 @@ namespace Demo.TestModel
             VerifyElementVisible("labelCaption", labelCaption);
             #endregion
 
+            VerifyElementVisible("btnSchedule", btnSchedule);
+            VerifyElementVisible("btnInitiateInspection", btnInitiateInspection);
+            VerifyElementVisible("blockRemoteInspectionFilter", blockRemoteInspectionFilter);
+
             VerifyElementVisible("gridBlockBase", gridBlockBase);
+        }
+
+        public override void WaitLoadPage()
+        {
+            Wait.UntilVisible(btnSchedule, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }
