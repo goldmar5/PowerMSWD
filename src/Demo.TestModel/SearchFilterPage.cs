@@ -36,6 +36,9 @@ namespace Demo.TestModel
         protected IWebElement linkSearch { get; set; }
 
         #endregion
+        
+        [FindsBy(How = How.CssSelector, Using = @".dojoxGridLoading")]
+        protected IWebElement GridLoading { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = @".block")]
         protected IWebElement gridBlockBase { get; set; }
@@ -75,6 +78,12 @@ namespace Demo.TestModel
             #endregion
 
             VerifyElementVisible("gridBlockBase", gridBlockBase);
+        }
+
+        public void WaitLoadGrid()
+        {
+            if (GridLoading.Displayed)
+                Wait.UntilDisapear(GridLoading, 20000);
         }
     }
 }

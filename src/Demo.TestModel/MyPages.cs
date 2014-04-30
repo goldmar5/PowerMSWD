@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Demo.TestModel.IPMPpages;
 using Demo.TestModel.IPMPpages.System;
+using Demo.TestModel.IPMPpages.PanelFunctionality;
 
 namespace Demo.TestModel
 {
@@ -81,5 +82,10 @@ namespace Demo.TestModel
         public static AddUserRolePage AddUserRolePage { get { return GetPage<AddUserRolePage>(); } }
         public static EditUserRolePage EditUserRolePage { get { return GetPage<EditUserRolePage>(); } }
         public static UserSettingsPage UserSettingsPage { get { return GetPage<UserSettingsPage>(); } }
+
+        //================= PANEL FUNCTIONALITY PAGES ====================//
+        public static GeneralPage GeneralPage { get { return GetPage<GeneralPage>(); } }
+        public static ServicesPage ServicesPage { get { return GetPage<ServicesPage>(); } }
+       
     }
 }

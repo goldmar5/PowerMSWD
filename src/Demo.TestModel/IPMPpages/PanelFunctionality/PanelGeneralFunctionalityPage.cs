@@ -14,14 +14,11 @@ using Swd.Core.Configuration;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
+using Demo.TestModel.IPMPpages.PanelFunctionality;
 namespace Demo.TestModel.IPMPpages
 {
     public class PanelGeneralFunctionalityPage : GeneralHeaderPage
-    {
-        public PanelGeneralFunctionalityPage()
-        {
-            expectedUnitTitle = "PANEL ";
-        }
+    {       
 
         #region WebElements
 
@@ -45,8 +42,11 @@ namespace Demo.TestModel.IPMPpages
         [FindsBy(How = How.CssSelector, Using = @"#quickUnitNavigation")]
         protected IWebElement blockUnitNavigation { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @"#dojox_widget_Toaster_2 .dijitToasterContent")]
-        protected IWebElement toasterMessage { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#modalDialogConfirm")]
+        protected IWebElement modalDialogYes { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#modalDialogCancel")]
+        protected IWebElement modalDialogCancel { get; set; }        
 
         //=====================================================================================================
         [FindsBy(How = How.CssSelector, Using = @".unitGeneralMenuGroup:nth-of-type(1) a[href*='general']")]
@@ -140,20 +140,95 @@ namespace Demo.TestModel.IPMPpages
             }
         }
 
+        public GeneralPage GeneralClick()
+        {
+            Wait.UntilVisible(linkGeneral, 20000).Click();
+            GeneralPage PanelgeneralPage = new GeneralPage();
+            PanelgeneralPage.WaitLoadPage();
+            return PanelgeneralPage;
+        }
+
+        public ServicesPage ServicesClick()
+        {
+            Wait.UntilVisible(linkServices, 20000).Click();
+            ServicesPage ServicesPage = new ServicesPage();
+            ServicesPage.WaitLoadPage();
+            return ServicesPage;
+        }
+
+        public LocationPage LocationClick() 
+        {
+            Wait.UntilVisible(linkLocation, 20000).Click();
+            LocationPage LocationPage = new LocationPage();
+            LocationPage.WaitLoadPage();
+            return LocationPage;
+        }
+
+        public DiagnosticsPage DiagnosticsClick()
+        {
+            Wait.UntilVisible(linkDiagnostics, 20000).Click();
+            DiagnosticsPage DiagnosticsPage = new DiagnosticsPage();
+            DiagnosticsPage.WaitLoadPage();
+            return DiagnosticsPage;
+        }
+
+        public RemoteInspectionPage RemoteInspectionsClick()
+        {
+            Wait.UntilVisible(linkRemoteInspections, 20000).Click();
+            RemoteInspectionPage RemoteInspectionPage = new RemoteInspectionPage();
+            RemoteInspectionPage.WaitLoadPage();
+            return RemoteInspectionPage;
+        }
+
+        public SetStatePage SetStateClick()
+        {
+            Wait.UntilVisible(linkSetState, 20000).Click();
+            SetStatePage SetStatePage = new SetStatePage();
+            SetStatePage.WaitLoadPage();
+            return SetStatePage;
+        }
+
+        public SetGetConfigurationPage SetGetConfigurationClick()
+        {
+            Wait.UntilVisible(linkSetGetConfiguration, 20000).Click();
+            SetGetConfigurationPage SetGetConfigurationPage = new SetGetConfigurationPage();
+            SetGetConfigurationPage.WaitLoadPage();
+            return SetGetConfigurationPage;
+        }
+
+        public ZonesCustomizationPage ZonesCustomizationClick()
+        {
+            Wait.UntilVisible(linkZonesCustomization, 20000).Click();
+            ZonesCustomizationPage ZonesCustomizationPage = new ZonesCustomizationPage();
+            ZonesCustomizationPage.WaitLoadPage();
+            return ZonesCustomizationPage;
+        }
+
+        public StandardLogPage StandardLogClick()
+        {
+            Wait.UntilVisible(linkStandardLog, 20000).Click();
+            StandardLogPage StandardLogPage = new StandardLogPage();
+            StandardLogPage.WaitLoadPage();
+            return StandardLogPage;
+        }
+
+        public LegacyLogPage LegacyLogClick()
+        {
+            Wait.UntilVisible(linkLegacyLog, 20000).Click();
+            LegacyLogPage LegacyLogPage = new LegacyLogPage();
+            LegacyLogPage.WaitLoadPage();
+            return LegacyLogPage;
+        }
+
         public void RefreshPanelClick()
         {
-            Wait.UntilVisible(btnRefreshPanel, 20000);
-            btnRefreshPanel.Click();
-            Wait.UntilVisible(toasterMessage, 20000);
-            string ToasterMassage = toasterMessage.GetElementText();
-            if (!ToasterMassage.Contains("task added to queue"))
-                throw new NotFoundException("Toaster message uppeared but not matched by 'task added to queue'. Real toaster is '" + ToasterMassage + "'");
+            Wait.UntilVisible(btnRefreshPanel, 20000).Click();
+            ExpectedToaster("task added to queue");
         }
 
         public EditUnitPage EditPanelClick()
         {
-            Wait.UntilVisible(btnEditPanel, 20000);
-            btnEditPanel.Click();
+            Wait.UntilVisible(btnEditPanel, 20000).Click();
             EditUnitPage EditUnitPage = new EditUnitPage();
             EditUnitPage.WaitLoadPage();
             return EditUnitPage;
@@ -161,14 +236,15 @@ namespace Demo.TestModel.IPMPpages
 
         public void RemovePanelClickYes()
         {
-            Wait.UntilVisible(btnRemovePanel, 20000);
-            btnRemovePanel.Click();
+            Wait.UntilVisible(btnRemovePanel, 20000).Click();
+            Wait.UntilVisible(modalDialogYes, 20000).Click();
+            ExpectedToaster("was deleted successful");
         }
 
         public void RemovePanelClickCancel()
         {
-            Wait.UntilVisible(btnRemovePanel, 20000);
-            btnRemovePanel.Click();
+            Wait.UntilVisible(btnRemovePanel, 20000).Click();
+            Wait.UntilVisible(modalDialogCancel, 20000).Click();
         }
 
     }

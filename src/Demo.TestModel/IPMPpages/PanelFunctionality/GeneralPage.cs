@@ -20,7 +20,8 @@ namespace Demo.TestModel.IPMPpages
     {
         public GeneralPage()
         {
-            expectedUnitTitle = "PANEL ";
+            expectedUnitTitle = "PANEL";
+            expectedPanelFunctionalityPage = "General";
         }
 
         #region WebElements
@@ -28,15 +29,22 @@ namespace Demo.TestModel.IPMPpages
         [FindsBy(How = How.CssSelector, Using = @"#unitgeneralform td label")]
         protected IWebElement labelAllInfoLabels { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = @"#unitGeneralBusyButtonBottom")]
+        protected IWebElement SaveChanges { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".columnRight .btnSimple")]
+        protected IWebElement DiscardChanges { get; set; }
+        
         #endregion
 
         #region Invoke() and IsDisplayed()
         public override void Invoke()
         {
-            var LoginPage = new LoginPage();
-            var tycoPage = LoginPage.Login();
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();        
             var PanelsPage = tycoPage.Panels();
             PanelsPage.Search(Config.panelID);
+            PanelsPage.PanelIDClick();
         }
 
         #endregion
@@ -90,7 +98,7 @@ namespace Demo.TestModel.IPMPpages
             Wait.UntilDisapear(mainModalDialog, 20000);
             if (!this.ItIsYou())
             {
-                throw new NoSuchElementException("Expected: " + expectedUnitTitle + ", Current: " + CurrentUnitTitle());
+                throw new NoSuchElementException("Expected: " + expectedPanelFunctionalityPage + ", Current: " + currentPanelFunctionalityPage());
             }
         }
     }

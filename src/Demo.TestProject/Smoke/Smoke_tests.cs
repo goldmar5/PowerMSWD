@@ -224,5 +224,23 @@ namespace PowerManageGUI.Smoke
         {
             PageTest(MyPages.UserSettingsPage);
         }
+
+        // ====================== PANEL FUNCTIONALITY PAGES ============================================//
+
+        [TestMethod]
+        [Test]
+        public void GeneralPanelPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.GeneralPage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void ServicesPanelPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.ServicesPage);
+        }
+
+
     }
 }

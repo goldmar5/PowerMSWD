@@ -15,6 +15,7 @@ namespace Demo.TestModel
     {
         public string expectedCaption;
         public string expectedUnitTitle;
+        public string expectedPanelFunctionalityPage;
 
         #region WebElements
 
@@ -71,7 +72,13 @@ namespace Demo.TestModel
         [FindsBy(How = How.CssSelector, Using = @".unitTitle")]
         protected IWebElement labelUnitTitle { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = @".selected")]
+        protected IWebElement selectedPanelFunctionalityPage { get; set; }
+
         #endregion
+
+        [FindsBy(How = How.CssSelector, Using = @"#dojox_widget_Toaster_2 .dijitToasterContent")]
+        protected IWebElement toasterMessage { get; set; }
 
         #endregion      
 
@@ -85,11 +92,16 @@ namespace Demo.TestModel
             return labelUnitTitle.GetElementText();
         }
 
+        public string currentPanelFunctionalityPage()
+        {
+            return selectedPanelFunctionalityPage.GetElementText();
+        }
+
         public virtual bool ItIsYou()
         {
             if (CurrentCaption() == expectedCaption)
                 return true;
-            if (CurrentUnitTitle().Contains(expectedUnitTitle))
+            if (CurrentUnitTitle().Contains(expectedUnitTitle) & (currentPanelFunctionalityPage() == expectedPanelFunctionalityPage))
                 return true;
             return false;
         }
@@ -171,6 +183,14 @@ namespace Demo.TestModel
         public void Help()
         {
             linkHelp.Click();
+        }
+
+        public void ExpectedToaster(string expectedToasterText)
+        {
+            Wait.UntilVisible(toasterMessage, 20000);
+            string ToasterMassage = toasterMessage.GetElementText();
+            if (!ToasterMassage.Contains(expectedToasterText))
+                throw new NotFoundException("Toaster message uppeared but not matched by '" + expectedToasterText + "'. Real toaster is '" + ToasterMassage + "'");
         }
     }
 }

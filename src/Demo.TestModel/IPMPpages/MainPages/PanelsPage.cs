@@ -14,6 +14,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium;
 #endregion
 using Demo.TestModel;
+using System.Threading;
 
 namespace Demo.TestModel.IPMPpages
 {
@@ -131,8 +132,7 @@ namespace Demo.TestModel.IPMPpages
 
         public GeneralPage PanelIDClick()
         {
-            Wait.UntilVisible(linkPanelID, 20000);
-            linkPanelID.Click();
+            Wait.UntilVisible(linkPanelID, 20000).Click();
             GeneralPage PanelGeneralPage = new GeneralPage();
             PanelGeneralPage.WaitLoadPage();
             return PanelGeneralPage;
@@ -142,8 +142,8 @@ namespace Demo.TestModel.IPMPpages
         public void Search(string SearchText)
         {
             txtSearch.SendKeys(SearchText);
-            linkSearch.Click();            
-        }
-        
+            Thread.Sleep(500);
+            Wait.UntilVisible(linkSearch, 5000).Click();
+        }        
     }
 }
