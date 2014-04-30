@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Swd.Core.WebDriver;
 
-namespace Demo.TestProject
+namespace PowerManageGUI
 {
     public abstract class TestBase
     {

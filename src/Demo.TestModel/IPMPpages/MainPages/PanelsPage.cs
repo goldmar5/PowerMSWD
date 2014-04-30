@@ -136,6 +136,7 @@ namespace Demo.TestModel.IPMPpages
             GeneralPage PanelGeneralPage = new GeneralPage();
             PanelGeneralPage.WaitLoadPage();
             return PanelGeneralPage;
+            //Log.output(Current Page is "expectedUnitTitle");
         }
 
         public void Search(string SearchText)
