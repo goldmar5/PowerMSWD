@@ -108,7 +108,7 @@ namespace Demo.TestModel.IPMPpages
 
         public PowerMaxPackagesPage PowerMaxPackages()
         {
-            linkPowerLinkPackages.Click();
+            linkPowerMaxPackages.Click();
             PowerMaxPackagesPage PowerMaxPackagesPage = new PowerMaxPackagesPage();
             PowerMaxPackagesPage.WaitLoadPage();
             return PowerMaxPackagesPage;

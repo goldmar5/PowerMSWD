@@ -21,12 +21,16 @@ namespace Demo.TestModel.IPMPpages.System
         public PowerLinkPackagesPage()
         {
             expectedCaption = "SOFTWARE PACKAGE LIST";
+            expectedHeadersCount = 4;
         }
 
         #region WebElements
 
         [FindsBy(How = How.CssSelector, Using = @"#swupgradeRepoSyncBusyButton")]
         protected IWebElement btnSynchronizeWithRepository { get; set; }
+
+        //[FindsBy(How = How.CssSelector, Using = @".dojoxGridSortNode")]
+        //protected IWebElement allHeadersColumn { get; set; }
 
         #endregion
 
@@ -76,8 +80,16 @@ namespace Demo.TestModel.IPMPpages.System
             Wait.UntilDisapear(mainModalDialog, 20000);
             if (!this.ItIsYou())
             {
-                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption() + 
+                                                " Exp columns: " + expectedHeadersCount + ", Cur columns: " + CurruntHeadersCount());
             }
+        }
+
+        public override bool ItIsYou()
+        {
+            if (CurrentCaption() == expectedCaption & CurruntHeadersCount() == expectedHeadersCount)
+                return true;
+            return false;
         }
     }
 }

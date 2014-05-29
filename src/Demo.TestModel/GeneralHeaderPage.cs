@@ -16,6 +16,7 @@ namespace Demo.TestModel
         public string expectedCaption;
         public string expectedUnitTitle;
         public string expectedPanelFunctionalityPage;
+        public int expectedHeadersCount;
 
         #region WebElements
 
@@ -57,7 +58,7 @@ namespace Demo.TestModel
         [FindsBy(How = How.CssSelector, Using = @"#app_layout_AnimatedLink_1")]
         protected IWebElement linkLogout { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".help")]
+        [FindsBy(How = How.CssSelector, Using = @"#app_layout_AnimatedLink_2")]
         protected IWebElement linkHelp { get; set; }
         #endregion
 
@@ -90,6 +91,11 @@ namespace Demo.TestModel
         public string CurrentUnitTitle()
         {
             return labelUnitTitle.GetElementText();
+        }
+
+        public int CurruntHeadersCount()
+        {
+            return Driver.FindElements(By.CssSelector(".dojoxGridSortNode")).Count;
         }
 
         public string currentPanelFunctionalityPage()
@@ -189,8 +195,12 @@ namespace Demo.TestModel
         {
             Wait.UntilVisible(toasterMessage, 20000);
             string ToasterMassage = toasterMessage.GetElementText();
-            if (!ToasterMassage.Contains(expectedToasterText))
+            if (ToasterMassage.Contains(expectedToasterText))
+                Console.WriteLine("Toaster message '" + ToasterMassage + "' matched to expected '" + expectedToasterText + "'");
+            //LOG.("Toaster message '" + ToasterMassage + "' matched to expected '" + expectedToasterText + "'");
+            else
                 throw new NotFoundException("Toaster message uppeared but not matched by '" + expectedToasterText + "'. Real toaster is '" + ToasterMassage + "'");
+
         }
     }
 }

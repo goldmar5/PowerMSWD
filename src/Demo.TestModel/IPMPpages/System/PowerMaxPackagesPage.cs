@@ -16,17 +16,15 @@ using OpenQA.Selenium;
 
 namespace Demo.TestModel.IPMPpages.System
 {
-    public class PowerMaxPackagesPage : SearchFilterPage
+    public class PowerMaxPackagesPage : PowerLinkPackagesPage
     {
         public PowerMaxPackagesPage()
         {
             expectedCaption = "SOFTWARE PACKAGE LIST";
+            expectedHeadersCount = 6;
         }
 
         #region WebElements
-
-        [FindsBy(How = How.CssSelector, Using = @"#swupgradeRepoSyncBusyButton")]
-        protected IWebElement btnSynchronizeWithRepository { get; set; }
 
         #endregion
 
@@ -68,16 +66,6 @@ namespace Demo.TestModel.IPMPpages.System
             VerifyElementVisible("gridBlockBase", gridBlockBase);
 
             VerifyElementVisible("btnSynchronizeWithRepository", btnSynchronizeWithRepository);
-        }
-
-        public override void WaitLoadPage()
-        {
-            Wait.UntilVisible(btnSynchronizeWithRepository, 20000);
-            Wait.UntilDisapear(mainModalDialog, 20000);
-            if (!this.ItIsYou())
-            {
-                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
-            }
         }
     }
 }
