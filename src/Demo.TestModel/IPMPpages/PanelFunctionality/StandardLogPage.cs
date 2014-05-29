@@ -85,7 +85,7 @@ namespace Demo.TestModel.IPMPpages.PanelFunctionality
             #endregion
 
             VerifyElementVisible("labelUnitTitle", labelUnitTitle);
-            VerifyElementVisible("labelUnitTitle", LogRefresh);
+            VerifyElementVisible("LogRefresh", LogRefresh);
         }
 
         public override void WaitLoadPage()

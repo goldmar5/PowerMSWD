@@ -86,6 +86,14 @@ namespace Demo.TestModel
         //================= PANEL FUNCTIONALITY PAGES ====================//
         public static GeneralPage GeneralPage { get { return GetPage<GeneralPage>(); } }
         public static ServicesPage ServicesPage { get { return GetPage<ServicesPage>(); } }
+        public static LocationPage LocationPage { get { return GetPage<LocationPage>(); } }
+        public static DiagnosticsPage DiagnosticsPage { get { return GetPage<DiagnosticsPage>(); } }
+        public static RemoteInspectionsPage RemoteInspectionsPage { get { return GetPage<RemoteInspectionsPage>(); } }
+        public static SetStatePage SetStatePage { get { return GetPage<SetStatePage>(); } }
+        public static SetGetConfigurationPage SetGetConfigurationPage { get { return GetPage<SetGetConfigurationPage>(); } }
+        public static ZonesCustomizationPage ZonesCustomizationPage { get { return GetPage<ZonesCustomizationPage>(); } }
+        public static StandardLogPage StandardLogPage { get { return GetPage<StandardLogPage>(); } }
+        public static LegacyLogPage LegacyLogPage { get { return GetPage<LegacyLogPage>(); } }
        
     }
 }

@@ -33,6 +33,9 @@ namespace Demo.TestModel.IPMPpages
         [FindsBy(How = How.CssSelector, Using = @".diagnosticBtn button")]
         protected IWebElement dropdownActions { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = @".dijitTitlePaneTextNode")]
+        protected IWebElement textDevicesTitle { get; set; }
+
         #endregion
 
         #region Invoke() and IsDisplayed()
@@ -95,8 +98,8 @@ namespace Demo.TestModel.IPMPpages
 
         public override void WaitLoadPage()
         {
-
             Wait.UntilDisapear(mainModalDialog, 20000);
+            Wait.UntilVisible(textDevicesTitle, 20000);
             if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedPanelFunctionalityPage + ", Current: " + currentPanelFunctionalityPage());

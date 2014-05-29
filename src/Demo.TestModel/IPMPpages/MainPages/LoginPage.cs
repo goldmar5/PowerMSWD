@@ -87,7 +87,7 @@ namespace Demo.TestModel.IPMPpages
             for (int i = 0; i < 50; i++)
             {
                 if (labelInvalidEmailPass.IsDisplayedSafe())
-                    throw new ApplicationException("Invalid Email or Password");
+                    throw new ApplicationException(labelInvalidEmailPass.Text);
                 Thread.Sleep(100);
             }            
             var logoTycoPage = new LogoTycoPage();

@@ -241,6 +241,61 @@ namespace PowerManageGUI.Smoke
             PageTest(MyPages.ServicesPage);
         }
 
+        [TestMethod]
+        [Test]
+        public void LocationPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.LocationPage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void DiagnosticsPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.DiagnosticsPage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void RemoteInspectionsPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.RemoteInspectionsPage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void SetStatePage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.SetStatePage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void SetGetConfigurationPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.SetGetConfigurationPage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void ZonesCustomizationPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.ZonesCustomizationPage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void StandardLogPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.StandardLogPage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void LegacyLogPage_VerifyExpectedElements()
+        {
+            PageTest(MyPages.LegacyLogPage);
+        }
 
     }
 }

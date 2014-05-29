@@ -27,6 +27,10 @@ namespace Demo.TestModel.IPMPpages.PanelFunctionality
 
         #region WebElements 
 
+        [FindsBy(How = How.CssSelector, Using = @".gm-style")]
+        protected IWebElement mapClass { get; set; }
+        
+
         #endregion
 
         #region Invoke() and IsDisplayed()
@@ -87,6 +91,7 @@ namespace Demo.TestModel.IPMPpages.PanelFunctionality
         public override void WaitLoadPage()
         {
             Wait.UntilDisapear(mainModalDialog, 20000);
+            Wait.UntilVisible(mapClass, 20000);
             if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedPanelFunctionalityPage + ", Current: " + currentPanelFunctionalityPage());

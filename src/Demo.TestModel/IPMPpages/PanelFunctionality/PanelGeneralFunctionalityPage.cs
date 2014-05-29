@@ -172,12 +172,12 @@ namespace Demo.TestModel.IPMPpages
             return DiagnosticsPage;
         }
 
-        public RemoteInspectionPage RemoteInspectionsClick()
+        public RemoteInspectionsPage RemoteInspectionsClick()
         {
             Wait.UntilVisible(linkRemoteInspections, 20000).Click();
-            RemoteInspectionPage RemoteInspectionPage = new RemoteInspectionPage();
-            RemoteInspectionPage.WaitLoadPage();
-            return RemoteInspectionPage;
+            RemoteInspectionsPage RemoteInspectionsPage = new RemoteInspectionsPage();
+            RemoteInspectionsPage.WaitLoadPage();
+            return RemoteInspectionsPage;
         }
 
         public SetStatePage SetStateClick()
