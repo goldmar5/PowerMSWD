@@ -20,7 +20,7 @@ namespace PowerManageGUI.Smoke
             {
                 try
                 {
-                    page.Invoke();
+                    page.Open();
                     page.VerifyExpectedElementsAreDisplayed();
                 }
                 catch (Exception)
@@ -42,56 +42,56 @@ namespace PowerManageGUI.Smoke
         [Test]
         public void LogoutMenuPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.LogoutMenuPage);
+            PageTest(Pages.LogoutMenuPage);
         }
 
         [TestMethod]
         [Test]
         public void TycoPowerManagePage_VerifyExpectedElements()
         {
-            PageTest(MyPages.TycoPowerManagePage);
+            PageTest(Pages.LogoTycoPage);
         }
 
         [TestMethod]
         [Test]
         public void LoginPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.LoginPage);
+            PageTest(Pages.LoginPage);
         }
 
         [TestMethod]
         [Test]
         public void PanelsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.PanelsPage);
+            PageTest(Pages.PanelsPage);
         }
 
         [TestMethod]
         [Test]
         public void GroupPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.GroupPage);
+            PageTest(Pages.GroupPage);
         }
 
         [TestMethod]
         [Test]
         public void EventsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.EventsPage);
+            PageTest(Pages.EventsPage);
         }
 
         [TestMethod]
         [Test]
         public void ProcessesPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.ProcessesPage);
+            PageTest(Pages.ProcessesPage);
         }
 
         [TestMethod]
         [Test]
         public void SystemPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.SystemPage);
+            PageTest(Pages.SystemPage);
         }
 
         // ====================== PANELS ============================================//
@@ -99,21 +99,21 @@ namespace PowerManageGUI.Smoke
         [Test]
         public void FaultsMonitoringPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.FaultsMonitoringPage);
+            PageTest(Pages.FaultsMonitoringPage);
         }
 
         [TestMethod]
         [Test]
         public void SuspendedFaultsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.SuspendedFaultsPage);
+            PageTest(Pages.SuspendedFaultsPage);
         }
 
         [TestMethod]
         [Test]
         public void RemoteInspectionPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.RemoteInspectionPage);
+            PageTest(Pages.RemoteInspectionPage);
         }
 
         // ====================== SYSTEM ============================================//
@@ -122,56 +122,56 @@ namespace PowerManageGUI.Smoke
         [Test]
         public void UsersPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.UsersPage);
+            PageTest(Pages.UsersPage);
         }
 
         [TestMethod]
         [Test]
         public void UserRolesPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.UserRolesPage);
+            PageTest(Pages.UserRolesPage);
         }
 
         [TestMethod]
         [Test]
         public void UserActionLogPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.UserActionLogPage);
+            PageTest(Pages.UserActionLogPage);
         }
 
         [TestMethod]
         [Test]
         public void PowerMaxPackagesPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.PowerMaxPackagesPage);
+            PageTest(Pages.PowerMaxPackagesPage);
         }
 
         [TestMethod]
         [Test]
         public void PowerLinkPackagesPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.PowerLinkPackagesPage);
+            PageTest(Pages.PowerLinkPackagesPage);
         }
 
         [TestMethod]
         [Test]
         public void ManageBaseConfigurationsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.ManageBaseConfigurationsPage);
+            PageTest(Pages.ManageBaseConfigurationsPage);
         }
 
         [TestMethod]
         [Test]
         public void CentralStationsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.CentralStationsPage);
+            PageTest(Pages.CentralStationsPage);
         }
 
         [TestMethod]
         [Test]
         public void RemoteInspectionValuesPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.RemoteInspectionValuesPage);
+            PageTest(Pages.RemoteInspectionValuesPage);
         }
 
         // ====================== ADD EDIT PAGES ============================================//
@@ -180,49 +180,77 @@ namespace PowerManageGUI.Smoke
         [Test]
         public void AddUnitPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.AddUnitPage);
+            PageTest(Pages.AddUnitPage);
         }
 
         [TestMethod]
         [Test]
         public void EditUnitPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.EditUnitPage);
+            PageTest(Pages.EditUnitPage);
         }
 
         [TestMethod]
         [Test]
         public void AddUserRolePage_VerifyExpectedElements()
         {
-            PageTest(MyPages.AddUserRolePage);
+            PageTest(Pages.AddUserRolePage);
         }
 
         [TestMethod]
         [Test]
         public void EditUserRolePage_VerifyExpectedElements()
         {
-            PageTest(MyPages.EditUserRolePage);
+            PageTest(Pages.EditUserRolePage);
         }
 
         [TestMethod]
         [Test]
         public void AddUserPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.AddUserPage);
+            PageTest(Pages.AddUserPage);
         }
 
         [TestMethod]
         [Test]
         public void EditUserPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.EditUserPage);
+            PageTest(Pages.EditUserPage);
+        }
+
+        [TestMethod]
+        [Test]
+        public void AddCS_VerifyExpectedElements()
+        {
+            PageTest(Pages.AddCS);
+        }
+
+        [TestMethod]
+        [Test]
+        public void EditCS_VerifyExpectedElements()
+        {
+            PageTest(Pages.EditCS);
+        }
+
+        [TestMethod]
+        [Test]
+        public void AddGroup_VerifyExpectedElements()
+        {
+            PageTest(Pages.AddGroup);
+        }
+
+        [TestMethod]
+        [Test]
+        public void EditGroup_VerifyExpectedElements()
+        {
+            PageTest(Pages.EditGroup);
         }
 
         [TestMethod]
         [Test]
         public void UserSettingsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.UserSettingsPage);
+            PageTest(Pages.UserSettingsPage);
         }
 
         // ====================== PANEL FUNCTIONALITY PAGES ============================================//
@@ -231,70 +259,70 @@ namespace PowerManageGUI.Smoke
         [Test]
         public void GeneralPanelPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.GeneralPage);
+            PageTest(Pages.GeneralPage);
         }
 
         [TestMethod]
         [Test]
         public void ServicesPanelPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.ServicesPage);
+            PageTest(Pages.ServicesPage);
         }
 
         [TestMethod]
         [Test]
         public void LocationPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.LocationPage);
+            PageTest(Pages.LocationPage);
         }
 
         [TestMethod]
         [Test]
         public void DiagnosticsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.DiagnosticsPage);
+            PageTest(Pages.DiagnosticsPage);
         }
 
         [TestMethod]
         [Test]
         public void RemoteInspectionsPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.RemoteInspectionsPage);
+            PageTest(Pages.RemoteInspectionsPage);
         }
 
         [TestMethod]
         [Test]
         public void SetStatePage_VerifyExpectedElements()
         {
-            PageTest(MyPages.SetStatePage);
+            PageTest(Pages.SetStatePage);
         }
 
         [TestMethod]
         [Test]
         public void SetGetConfigurationPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.SetGetConfigurationPage);
+            PageTest(Pages.SetGetConfigurationPage);
         }
 
         [TestMethod]
         [Test]
         public void ZonesCustomizationPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.ZonesCustomizationPage);
+            PageTest(Pages.ZonesCustomizationPage);
         }
 
         [TestMethod]
         [Test]
         public void StandardLogPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.StandardLogPage);
+            PageTest(Pages.StandardLogPage);
         }
 
         [TestMethod]
         [Test]
         public void LegacyLogPage_VerifyExpectedElements()
         {
-            PageTest(MyPages.LegacyLogPage);
+            PageTest(Pages.LegacyLogPage);
         }
 
     }

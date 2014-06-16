@@ -15,48 +15,31 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.IPMPpages
 {
-    public class UserSettingsPage : AddEditBasePage
+    public class EditGroup : AddEditBasePage
     {
 
-        public UserSettingsPage()
+        public EditGroup()
         {
-            expectedCaption = "SETTINGS MENU";
+            expectedCaption = "EDIT UNIT GROUP";
         }
 
-        #region WebElements   
+        #region WebElements        
 
-        [FindsBy(How = How.CssSelector, Using = @"#settingsMenuBusyButtonTop")]
-        protected IWebElement btnSaveChangesSettingsMenuTop { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#groupEditBusyButtonTop")]
+        protected IWebElement btnSaveChangesEditGroupTop { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @"#settingsMenuBusyButtonBottom")]
-        protected IWebElement btnSaveChangesSettingsMenuBottom { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#usr_phone")]
-        protected IWebElement txtUsr_phone { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#coy_id")]
-        protected IWebElement txtCountry { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#newpassword")]
-        protected IWebElement txtPassword { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#confirmpassword")]
-        protected IWebElement txtConfirmPassword { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @".label.required")]
-        protected IWebElement labelPhone { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#coy_id_label")]
-        protected IWebElement labelCountry { get; set; }
+        [FindsBy(How = How.CssSelector, Using = @"#groupEditBusyButtonBottom")]
+        protected IWebElement btnSaveChangesEditGroupBottom { get; set; }
 
         #endregion
 
-        #region Open() and IsDisplayed()
+        #region Open()
         public override void Open()
-        {
-            var LoginPage = GetLoginPage();
-            var tycoPage = LoginPage.Login();
-            tycoPage.Settings();
+        {            
+            var loginPage = GetLoginPage();
+            var tycoPage = loginPage.Login();
+            var groupPage = tycoPage.Groups();
+            groupPage.EditGroupClick();
         }
 
         #endregion
@@ -84,24 +67,17 @@ namespace Demo.TestModel.IPMPpages
             VerifyElementVisible("labelStayOnPage", labelStayOnPage);
             VerifyElementVisible("checkboxStayOnPageTop", checkboxStayOnPageTop);
             VerifyElementVisible("checkboxStayOnPageBottom", checkboxStayOnPageBottom);
-            VerifyElementVisible("btnSaveChangesTop", btnSaveChangesSettingsMenuTop);
-            VerifyElementVisible("btnSaveChangesBottom", btnSaveChangesSettingsMenuBottom);
+            VerifyElementVisible("btnSaveChangesTop", btnSaveChangesEditGroupTop);
+            VerifyElementVisible("btnSaveChangesBottom", btnSaveChangesEditGroupBottom);
             VerifyElementVisible("btnDiscardChanges", btnDiscardChanges);
             VerifyElementVisible("addEditGrid", addEditGrid);
             VerifyElementVisible("pagePathNextToCaption", pagePathNextToCaption);
             #endregion
-
-            VerifyElementVisible("txtUsr_phone", txtUsr_phone);
-            VerifyElementVisible("txtCountry", txtCountry);
-            VerifyElementVisible("txtPassword", txtPassword);
-            VerifyElementVisible("txtConfirmPassword", txtConfirmPassword);
-            VerifyElementVisible("labelPhone", labelPhone);
-            VerifyElementVisible("labelCountry", labelCountry);
         }
 
         public override void WaitLoadPage()
         {
-            Wait.UntilVisible(btnSaveChangesSettingsMenuTop, 20000);
+            Wait.UntilVisible(btnSaveChangesEditGroupTop, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
             if (!this.ItIsYou())
             {
@@ -110,3 +86,6 @@ namespace Demo.TestModel.IPMPpages
         }
     }
 }
+
+
+

@@ -68,7 +68,7 @@ namespace Swd.Core.WebDriver
         {
             while (true)
             {
-                if (!element.Displayed) break;
+                if (!element.IsDisplayedSafe()) break;
             }
         }
     }

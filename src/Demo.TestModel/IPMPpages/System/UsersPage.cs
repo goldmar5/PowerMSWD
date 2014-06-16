@@ -34,13 +34,10 @@ namespace Demo.TestModel.IPMPpages.System
         [FindsBy(How = How.CssSelector, Using = @"#userSuspendBusyButton")]
         protected IWebElement btnToggleSuspendUser { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".gridCellLink")]
-        protected IWebElement linkEditUser { get; set; }
-
         #endregion
 
-        #region Invoke()
-        public override void Invoke()
+        #region Open()
+        public override void Open()
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
@@ -79,13 +76,14 @@ namespace Demo.TestModel.IPMPpages.System
             VerifyElementVisible("btnAddUser", btnAddUser);
             VerifyElementVisible("btnRemoveUser", btnRemoveUser);
             VerifyElementVisible("btnToggleSuspendUser", btnToggleSuspendUser);
-            VerifyElementVisible("linkEditUser", linkEditUser);
+            VerifyElementVisible("linkEditUser", gridLink);
         }
 
         public override void WaitLoadPage()
         {
             Wait.UntilVisible(btnAddUser, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
+            WaitLoadGrid();
             if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
@@ -102,8 +100,8 @@ namespace Demo.TestModel.IPMPpages.System
 
         public EditUserPage EditUserClick()
         {
-            Wait.UntilVisible(linkEditUser, 20000);
-            linkEditUser.Click();
+            Wait.UntilVisible(gridLink, 20000);
+            gridLink.Click();
             EditUserPage EditUserPage = new EditUserPage();
             EditUserPage.WaitLoadPage();
             return EditUserPage;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Swd.Core;
 using Swd.Core.Pages;
 using OpenQA.Selenium;
@@ -11,7 +12,7 @@ using Swd.Core.WebDriver;
 
 namespace Demo.TestModel
 {
-    public abstract class GeneralHeaderPage : BasePage
+    public class GeneralHeaderPage : BasePage
     {
         public string expectedCaption;
         public string expectedUnitTitle;
@@ -81,7 +82,54 @@ namespace Demo.TestModel
         [FindsBy(How = How.CssSelector, Using = @"#dojox_widget_Toaster_2 .dijitToasterContent")]
         protected IWebElement toasterMessage { get; set; }
 
-        #endregion      
+        [FindsBy(How = How.CssSelector, Using = @".dojoxGridLoading")]
+        protected IWebElement GridLoading { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".dojoxGridMasterMessages")]
+        protected IWebElement NoDataFoundMessage { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @".gridCellLink")]
+        protected IWebElement gridLink { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#modalDialogConfirm")]
+        protected IWebElement modalDialogYes { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = @"#modalDialogCancel")]
+        protected IWebElement modalDialogCancel { get; set; }
+
+        #endregion
+
+        public override void Open()
+        {
+
+        }
+        public override void VerifyExpectedElementsAreDisplayed()
+        {
+            
+        }
+
+        public void WaitLoadGrid()
+        {
+            try
+            {
+                while (true)
+                {
+                    Thread.Sleep(500);
+                    if (GridLoading.Enabled | GridLoading.Displayed)
+                        Thread.Sleep(500);
+                    if (gridLink.Displayed)
+                        break;
+                    if (NoDataFoundMessage.Displayed)
+                        break;
+                }
+            }
+            catch (NoSuchElementException)
+            {
+            }
+            catch (StaleElementReferenceException)
+            {
+            }
+        }
 
         public string CurrentCaption()
         {

@@ -33,8 +33,8 @@ namespace Demo.TestModel.IPMPpages.System
 
         #endregion
 
-        #region Invoke()
-        public override void Invoke()
+        #region Open()
+        public override void Open()
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
@@ -78,10 +78,40 @@ namespace Demo.TestModel.IPMPpages.System
         {
             Wait.UntilVisible(btnAddCentralStation, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
+            WaitLoadGrid();
             if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
             }
+        }
+
+        public AddCS AddCSClick()
+        {
+            btnAddCentralStation.Click();
+            AddCS AddCS = new AddCS();
+            AddCS.WaitLoadPage();
+            return AddCS;
+        }
+
+        public EditCS EditCSClick()
+        {
+            Wait.UntilVisible(gridLink, 20000).Click();
+            EditCS EditCS = new EditCS();
+            EditCS.WaitLoadPage();
+            return EditCS;
+        }
+
+        public void RemoveCSClickYes()
+        {
+            Wait.UntilVisible(btnRemoveCentralStation, 20000).Click();
+            Wait.UntilVisible(modalDialogYes, 20000).Click();
+            ExpectedToaster("was deleted successful");
+        }
+
+        public void RemoveCSClickCancel()
+        {
+            Wait.UntilVisible(btnRemoveCentralStation, 20000).Click();
+            Wait.UntilVisible(modalDialogCancel, 20000).Click();
         }
     }
 }

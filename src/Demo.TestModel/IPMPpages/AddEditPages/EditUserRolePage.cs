@@ -33,8 +33,8 @@ namespace Demo.TestModel.IPMPpages
 
         #endregion
 
-        #region Invoke()
-        public override void Invoke()
+        #region Open()
+        public override void Open()
         {
             var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();
@@ -78,9 +78,16 @@ namespace Demo.TestModel.IPMPpages
 
         public override void WaitLoadPage()
         {
-            Wait.UntilVisible(btnSaveChangesEditRoleTop, 20000);
-            Wait.UntilDisapear(mainModalDialog, 20000);
-            if (!this.ItIsYou())
+            try
+            {
+                Wait.UntilVisible(btnSaveChangesEditRoleTop, 20000);
+                Wait.UntilDisapear(mainModalDialog, 20000);
+                if (!this.ItIsYou())
+                {
+                    throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+                }
+            }
+            catch (Exception)
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
             }

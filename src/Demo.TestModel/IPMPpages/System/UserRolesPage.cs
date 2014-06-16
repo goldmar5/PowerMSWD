@@ -31,13 +31,10 @@ namespace Demo.TestModel.IPMPpages.System
         [FindsBy(How = How.CssSelector, Using = @"#roleRemoveBusyButton")]
         protected IWebElement btnRemoveRole { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = @".gridCellLink")]
-        protected IWebElement linkEditRole { get; set; }
-
         #endregion
 
-        #region Invoke()
-        public override void Invoke()
+        #region Open()
+        public override void Open()
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
@@ -75,13 +72,14 @@ namespace Demo.TestModel.IPMPpages.System
 
             VerifyElementVisible("btnAddRole", btnAddRole);
             VerifyElementVisible("btnRemoveRole", btnRemoveRole);
-            VerifyElementVisible("linkEditRole", linkEditRole);
+            VerifyElementVisible("linkEditRole", gridLink);
         }
 
         public override void WaitLoadPage()
         {
             Wait.UntilVisible(btnAddRole, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
+            WaitLoadGrid();
             if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
@@ -104,8 +102,8 @@ namespace Demo.TestModel.IPMPpages.System
 
         public EditUserRolePage EditRoleClick()
         {
-            Wait.UntilVisible(linkEditRole, 20000);
-            linkEditRole.Click();
+            Wait.UntilVisible(gridLink, 20000);
+            gridLink.Click();
             EditUserRolePage EditUserRolePage = new EditUserRolePage();
             EditUserRolePage.WaitLoadPage();
             return EditUserRolePage;

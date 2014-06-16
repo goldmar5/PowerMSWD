@@ -24,8 +24,8 @@ namespace Demo.TestModel.IPMPpages
 
         #endregion
 
-        #region Invoke() and IsDisplayed()
-        public override void Invoke()
+        #region Open() and IsDisplayed()
+        public override void Open()
         {
             var LoginPage = GetLoginPage();
             LoginPage.Login();

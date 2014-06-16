@@ -7,6 +7,6 @@ namespace Swd.Core.Pages
 {
     public interface Invokable
     {
-        void Invoke();
+        void Open();
     }
 }

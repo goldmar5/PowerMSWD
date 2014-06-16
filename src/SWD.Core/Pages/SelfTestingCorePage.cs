@@ -11,7 +11,7 @@ namespace Swd.Core.Pages
 {
     public abstract class SelfTestingCorePage : CorePage, Invokable, ICheckExpectedWebElements
     {
-        public abstract void Invoke();
+        public abstract void Open();
 
         public abstract void VerifyExpectedElementsAreDisplayed();
     }

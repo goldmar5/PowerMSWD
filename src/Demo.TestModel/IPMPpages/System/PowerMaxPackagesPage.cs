@@ -26,10 +26,13 @@ namespace Demo.TestModel.IPMPpages.System
 
         #region WebElements
 
+        //[FindsBy(How = How.CssSelector, Using = @"#swupgradeRepoSyncBusyButton")]
+        //protected IWebElement btnSynchronizeWithRepository { get; set; }
+
         #endregion
 
-        #region Invoke()
-        public override void Invoke()
+        #region Open()
+        public override void Open()
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();

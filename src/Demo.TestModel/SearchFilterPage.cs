@@ -37,16 +37,13 @@ namespace Demo.TestModel
 
         #endregion
         
-        [FindsBy(How = How.CssSelector, Using = @".dojoxGridLoading")]
-        protected IWebElement GridLoading { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = @".block")]
         protected IWebElement gridBlockBase { get; set; }
 
         #endregion
 
-        #region Invoke() and IsDisplayed()
-        public override void Invoke()
+        #region Open() and IsDisplayed()
+        public override void Open()
         {
             
         }
@@ -80,10 +77,15 @@ namespace Demo.TestModel
             VerifyElementVisible("gridBlockBase", gridBlockBase);
         }
 
-        public void WaitLoadGrid()
+        public override void WaitLoadPage()
         {
-            if (GridLoading.Displayed)
-                Wait.UntilDisapear(GridLoading, 20000);
+            Wait.UntilVisible(labelCaption, 20000);
+            Wait.UntilDisapear(mainModalDialog, 20000);
+            WaitLoadGrid();
+            if (!this.ItIsYou())
+            {
+                throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption());
+            }
         }
     }
 }

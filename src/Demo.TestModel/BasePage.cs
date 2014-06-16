@@ -32,7 +32,7 @@ namespace Demo.TestModel
         public virtual void Dispose()
         {
             // Does nothing at the moment
-        }
+        }        
 
         public static LoginPage GetLoginPage()
         {
@@ -40,6 +40,6 @@ namespace Demo.TestModel
             SwdBrowser.Driver.Url = Config.applicationMainUrl;
             loginPage.WaitLoadPage();
             return loginPage;
-        } 
+        }
     }
 }

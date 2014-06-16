@@ -36,8 +36,8 @@ namespace Demo.TestModel.IPMPpages
 
         #endregion
 
-        #region Invoke()
-        public override void Invoke()
+        #region Open()
+        public override void Open()
         {
             var LoginPage = GetLoginPage();
             var tycoPage = LoginPage.Login();

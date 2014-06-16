@@ -49,9 +49,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPMPpages\AddEditPages\AddCS.cs" />
     <Compile Include="IPMPpages\AddEditPages\AddEditBasePage.cs" />
     <Compile Include="GeneralHeaderPage.cs" />
     <Compile Include="BasePage.cs" />
+    <Compile Include="IPMPpages\AddEditPages\AddGroup.cs" />
+    <Compile Include="IPMPpages\AddEditPages\EditCS.cs" />
+    <Compile Include="IPMPpages\AddEditPages\EditGroup.cs" />
+    <Compile Include="IPMPpages\MainPages\WrongLoginPage.cs" />
     <Compile Include="MyPages.cs" />
     <Compile Include="IPMPpages\AddEditPages\AddUnitPage.cs" />
     <Compile Include="IPMPpages\AddEditPages\AddUserPage.cs" />

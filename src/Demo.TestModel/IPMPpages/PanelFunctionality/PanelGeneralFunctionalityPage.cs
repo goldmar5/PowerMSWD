@@ -40,13 +40,7 @@ namespace Demo.TestModel.IPMPpages
         protected IWebElement labelOnlineStatus { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = @"#quickUnitNavigation")]
-        protected IWebElement blockUnitNavigation { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#modalDialogConfirm")]
-        protected IWebElement modalDialogYes { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = @"#modalDialogCancel")]
-        protected IWebElement modalDialogCancel { get; set; }        
+        protected IWebElement blockUnitNavigation { get; set; }        
 
         //=====================================================================================================
         [FindsBy(How = How.CssSelector, Using = @".unitGeneralMenuGroup:nth-of-type(1) a[href*='general']")]
@@ -83,12 +77,10 @@ namespace Demo.TestModel.IPMPpages
 
         #endregion
 
-        #region Invoke() and IsDisplayed()
-        public override void Invoke()
+        public override void Open()
         {
-        }
 
-        #endregion
+        }
 
         public override void VerifyExpectedElementsAreDisplayed()
         {

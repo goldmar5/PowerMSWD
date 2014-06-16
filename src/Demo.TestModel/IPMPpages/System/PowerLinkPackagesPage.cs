@@ -34,8 +34,8 @@ namespace Demo.TestModel.IPMPpages.System
 
         #endregion
 
-        #region Invoke()
-        public override void Invoke()
+        #region Open()
+        public override void Open()
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
@@ -78,6 +78,7 @@ namespace Demo.TestModel.IPMPpages.System
         {
             Wait.UntilVisible(btnSynchronizeWithRepository, 20000);
             Wait.UntilDisapear(mainModalDialog, 20000);
+            WaitLoadGrid();
             if (!this.ItIsYou())
             {
                 throw new NoSuchElementException("Expected: " + expectedCaption + ", Current: " + CurrentCaption() + 

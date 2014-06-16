@@ -17,7 +17,7 @@ using OpenQA.Selenium;
 #endregion
 namespace Demo.TestModel.IPMPpages
 {
-    public class LoginPage : BasePage
+    public class WrongLoginPage : BasePage
     {      
 
         #region WebElements
@@ -28,10 +28,8 @@ namespace Demo.TestModel.IPMPpages
         [FindsBy(How = How.XPath, Using = @"id(""dijit_form_ValidationTextBox_0"")")]
         protected IWebElement txtLogin { get; set; }
 
-
         [FindsBy(How = How.XPath, Using = @"id(""dijit_form_ValidationTextBox_1"")")]
         protected IWebElement txtPassword { get; set; }
-
 
         [FindsBy(How = How.XPath, Using = @"id(""dijit_form_Button_0"")")]
         protected IWebElement buttonLogIn { get; set; }
@@ -46,10 +44,9 @@ namespace Demo.TestModel.IPMPpages
 
         #region Open() and IsDisplayed()
         public override void Open()
-        {            
-            var loginPage = new LoginPage();
-            SwdBrowser.Driver.Url = Config.applicationMainUrl;
-            loginPage.WaitLoadPage();
+        {
+            var LoginPage = GetLoginPage();
+            LoginPage.WrongLogin("admin@visonic.com", "wrongPassword");
         }
 
         #endregion
@@ -61,6 +58,7 @@ namespace Demo.TestModel.IPMPpages
             VerifyElementVisible("txtPassword", txtPassword);
             VerifyElementVisible("buttonLogIn", buttonLogIn);
             VerifyElementVisible("linkForgot", linkForgot);
+            VerifyElementVisible("labelInvalidEmailPass", labelInvalidEmailPass);
         }
 
         public bool ItIsYou()
@@ -75,7 +73,7 @@ namespace Demo.TestModel.IPMPpages
             Wait.UntilVisible(containerLogin, 20000);
             if (!this.ItIsYou())
             {
-                throw new NoSuchElementException("Something gone wrong. it's not a LoginPage");
+                throw new NoSuchElementException("Something gone wrong. it's not a loginPage");
             }
         }
 
@@ -93,34 +91,6 @@ namespace Demo.TestModel.IPMPpages
             var logoTycoPage = new LogoTycoPage();
             logoTycoPage.WaitLoadPage();
             return logoTycoPage;
-        }
-
-        public LogoTycoPage Login(string login, string password)
-        {
-            txtLogin.SendKeys(login);
-            txtPassword.SendKeys(password);
-            buttonLogIn.Click();
-            for (int i = 0; i < 50; i++)
-            {
-                if (labelInvalidEmailPass.IsDisplayedSafe())
-                    throw new ApplicationException(labelInvalidEmailPass.Text);
-                Thread.Sleep(100);
-            }
-            var logoTycoPage = new LogoTycoPage();
-            logoTycoPage.WaitLoadPage();
-            return logoTycoPage;
-        }
-
-        public void WrongLogin(string login, string password)
-        {
-            txtLogin.SendKeys(login);
-            txtPassword.SendKeys(password);
-            buttonLogIn.Click();
-            for (int i = 0; i < 50; i++)
-            {
-                if(!labelInvalidEmailPass.IsDisplayedSafe())
-                    Thread.Sleep(100);
-            }
         }
     }
 }

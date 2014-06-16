@@ -45,13 +45,10 @@ namespace Demo.TestModel
 
         #endregion
 
-        #region Invoke() and IsDisplayed()
-        public override void Invoke()
+        public override void Open()
         {
 
         }
-
-        #endregion
 
         public override void VerifyExpectedElementsAreDisplayed()
         {

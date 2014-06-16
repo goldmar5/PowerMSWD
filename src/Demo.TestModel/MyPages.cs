@@ -9,11 +9,11 @@ using Demo.TestModel.IPMPpages.PanelFunctionality;
 namespace Demo.TestModel
 {
     /**   
-        The class `MyPages` is an entry point for your PageObjects.   \n
+        The class `Pages` is an entry point for your PageObjects.   \n
         This is a Factory class, which is accessible from any place of the code.  \n
         Allows to call PegeObject actions from tests as well as from another PaeObjects   \n
     */
-    public static class MyPages
+    public static class Pages
     {
 
         /**
@@ -33,7 +33,7 @@ namespace Demo.TestModel
             For instance, you have defined a new PageObject with name `UserProfilePage` \n
             In order to have a convenient access to this page from any place of the test automation code, like this one: 
 
-            > MyPages.UserProfilePage.DoSomeAction(“param1”);
+            > Pages.UserProfilePage.DoSomeAction(“param1”);
 
             Put the line in the following format to the list below: 
 
@@ -51,8 +51,9 @@ namespace Demo.TestModel
         //=======================================================================================    
 
         public static LogoutMenuPage LogoutMenuPage { get { return GetPage<LogoutMenuPage>(); } }
-        public static LogoTycoPage TycoPowerManagePage { get { return GetPage<LogoTycoPage>(); } }
+        public static LogoTycoPage LogoTycoPage { get { return GetPage<LogoTycoPage>(); } }
         public static LoginPage LoginPage { get { return GetPage<LoginPage>(); } }
+        public static WrongLoginPage WrongLoginPage { get { return GetPage<WrongLoginPage>(); } }
         public static PanelsPage PanelsPage { get { return GetPage<PanelsPage>(); } }
         public static GroupPage GroupPage { get { return GetPage<GroupPage>(); } }
         public static EventsPage EventsPage { get { return GetPage<EventsPage>(); } }
@@ -81,6 +82,10 @@ namespace Demo.TestModel
         public static EditUserPage EditUserPage { get { return GetPage<EditUserPage>(); } }
         public static AddUserRolePage AddUserRolePage { get { return GetPage<AddUserRolePage>(); } }
         public static EditUserRolePage EditUserRolePage { get { return GetPage<EditUserRolePage>(); } }
+        public static AddCS AddCS { get { return GetPage<AddCS>(); } }
+        public static EditCS EditCS { get { return GetPage<EditCS>(); } }
+        public static AddGroup AddGroup { get { return GetPage<AddGroup>(); } }
+        public static EditGroup EditGroup { get { return GetPage<EditGroup>(); } }
         public static UserSettingsPage UserSettingsPage { get { return GetPage<UserSettingsPage>(); } }
 
         //================= PANEL FUNCTIONALITY PAGES ====================//

@@ -35,8 +35,8 @@ namespace Demo.TestModel.IPMPpages.PanelFunctionality
 
         #endregion
 
-        #region Invoke() and IsDisplayed()
-        public override void Invoke()
+        #region Open() and IsDisplayed()
+        public override void Open()
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();

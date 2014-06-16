@@ -34,8 +34,8 @@ namespace Demo.TestModel.IPMPpages
 
         #endregion
 
-        #region Invoke() and IsDisplayed()
-        public override void Invoke()
+        #region Open() and IsDisplayed()
+        public override void Open()
         {
             var loginPage = GetLoginPage();
             var tycoPage = loginPage.Login();
@@ -72,6 +72,35 @@ namespace Demo.TestModel.IPMPpages
             VerifyElementVisible("btnRemoveGroup", btnRemoveGroup);
 
             VerifyElementVisible("gridBlockBase", gridBlockBase);
+        }
+
+        public AddGroup AddGroupClick()
+        {
+            btnAddGroup.Click();
+            AddGroup AddGroup = new AddGroup();
+            AddGroup.WaitLoadPage();
+            return AddGroup;
+        }
+
+        public EditGroup EditGroupClick()
+        {
+            Wait.UntilVisible(gridLink, 20000).Click();
+            EditGroup EditGroup = new EditGroup();
+            EditGroup.WaitLoadPage();
+            return EditGroup;
+        }
+
+        public void RemoveGroupClickYes()
+        {
+            Wait.UntilVisible(btnRemoveGroup, 20000).Click();
+            Wait.UntilVisible(modalDialogYes, 20000).Click();
+            ExpectedToaster("was deleted successful");
+        }
+
+        public void RemoveGroupClickCancel()
+        {
+            Wait.UntilVisible(btnRemoveGroup, 20000).Click();
+            Wait.UntilVisible(modalDialogCancel, 20000).Click();
         }
     }
 }
